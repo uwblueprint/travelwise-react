@@ -5,6 +5,7 @@ import ApolloClient from "apollo-boost";
 import Navbar from './components/Navbar/Navbar';
 import LandingPage from './components/LandingPage/LandingPage';
 import CompaniesPage from './components/CompaniesPage/CompaniesPage';
+import ProfilePage from './components/ProfilePage';
 
 const client = new ApolloClient({
   uri: "https://travelwise-hasura.herokuapp.com/v1/graphql"
