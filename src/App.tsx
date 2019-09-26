@@ -17,6 +17,7 @@ const App: React.FC = () => {
         <Navbar />
         <Route path="/" exact component={LandingPage} />
         <Route path="/companies" exact component={CompaniesPage} />
+        <Route path="/profile" exact component={ProfilePage} />
       </Router>
     </ApolloProvider>
   );
