@@ -6,9 +6,13 @@ import Navbar from './components/Navbar/Navbar';
 import LandingPage from './components/LandingPage/LandingPage';
 import CompaniesPage from './components/CompaniesPage/CompaniesPage';
 import ProfilePage from './components/ProfilePage';
+import { HASURA_GRAPHQL_ADMIN_SECRET } from './utils/config'
 
 const client = new ApolloClient({
-  uri: "https://travelwise-hasura.herokuapp.com/v1/graphql"
+  uri: "https://travelwise-hasura.herokuapp.com/v1/graphql",
+  headers: {
+    'X-Hasura-Admin-Secret': HASURA_GRAPHQL_ADMIN_SECRET,
+  }
 });
 
 const App: React.FC = () => {
