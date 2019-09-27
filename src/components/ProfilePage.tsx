@@ -114,22 +114,33 @@ const ProfilePage: React.FC = () => {
 
 const ProfileInfo = (
     <div className="profileInfo">
-        <p><b>Champion Name:</b> </p>
-        <p><b>Company Name:</b> </p>
-        <p><b>Company Address:</b> </p>
-        <p><b>Company Phone Number:</b> </p>
-        <p><b>Email Address:</b> </p>
+        <p><b>Champion Name:</b> {props.user.champName} </p>
+        <p><b>Company Name:</b> {props.user.compName} </p>
+        <p><b>Company Address:</b> {props.user.address}</p>
+        <p><b>Company Phone Number:</b> {props.user.phoneNumber}</p>
+        <p><b>Email Address:</b> {props.user.email}</p>
     </div>
-);
+);}
 
-const ProfilePage: React.FC = () => {
+function StaticProfile(props:ProfileProps) {
+    return(<div>
+        <h1>Test Profile Page</h1>
+        <ProfileInformation user={props.user} facilities={props.facilities}/>
+        {FacilityInformation}
+    </div>);
+}
+
+// reference: https://reactjs.org/docs/forms.html
+function EditableProfile(){
     return (
         <div>
-            <h1>Test Profile Page</h1>
-            {ProfileInfo}
-            {FacilityInformation}
+            <h1>Edit Profile</h1>
         </div>
     );
+};
+
+const ProfilePage: React.FC = () => {
+    return <ProfileControl user={defaultProps.user} facilities={defaultProps.facilities}/>;
 }
 
 export default ProfilePage;
