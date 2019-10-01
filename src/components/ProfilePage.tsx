@@ -1,4 +1,6 @@
 import React from 'react';
+import {ProfileProps, userProps} from './Common';
+import EditableProfile from './EditProfilePage';
 // import { Query } from "react-apollo";
 // import { gql } from "apollo-boost";
 
@@ -12,38 +14,17 @@ import React from 'react';
 // }
 // `;
 
-const defaultProps = {
-    user: { champName: "Joe Smith",
-        compName: "ABC Co.",
-        address: "123 Any Street",
-        phoneNumber: "(123)-456-7890",
-        email: "joe@example.come"},
-    facilities: { numOffices: "7"}
-}
 
-interface Data {
-    companies: Array<{ id: string; name: string }>;
-};
-
-const iState = {editable: false};
-type State = Readonly<typeof iState>;
-type ProfileProps ={
-    user: { champName: string,
-            compName: string,
-            address: string,
-            phoneNumber: string,
-            email: string},
-    facilities: { numOffices: string}
-}
+type State = Readonly<{editable:boolean, userInfo:ProfileProps}>;
 
 class ProfileControl extends React.Component<ProfileProps>{
-    readonly state: State = iState;
+    readonly state: State;
 
     constructor(props:ProfileProps){
         super(props);
         this.toggleEdit = this.toggleEdit.bind(this);
         this.render = this.render.bind(this);
-        this.state = {editable: false};
+        this.state = {editable: false, userInfo: props};
     }
 
     toggleEdit(){
@@ -59,11 +40,14 @@ class ProfileControl extends React.Component<ProfileProps>{
         let button;
 
         if(editable){
-            display = <EditableProfile/>;
+            display = <EditableProfile state={this.state}/>;
             button = <button onClick={this.toggleEdit}>Save</button>
+            console.log(userProps);
+            // this.setState({userInfo: userProps});
         } else {
             display = <StaticProfile user={this.props.user} facilities={this.props.facilities}/>;
             button = <button onClick={this.toggleEdit}>Edit</button>
+            console.log(this.props);
         }
 
         return (
@@ -100,15 +84,6 @@ function StaticProfile(props:ProfileProps) {
     </div>);
 }
 
-// reference: https://reactjs.org/docs/forms.html
-function EditableProfile(){
-    return (
-        <div>
-            <h1>Edit Profile</h1>
-        </div>
-    );
-};
-
 const ProfilePage: React.FC = () => {
     return <ProfileControl user={defaultProps.user} facilities={defaultProps.facilities}/>;
 
@@ -144,3 +119,4 @@ const ProfilePage: React.FC = () => {
 }
 
 export default ProfilePage;
+export {ProfileControl};
