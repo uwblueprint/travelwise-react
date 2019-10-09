@@ -1,28 +1,10 @@
 import React from 'react';
 import {ProfileProps, userProps} from './Common';
 import {ProfileControl} from './ProfilePage';
-<<<<<<< HEAD
 
 type editProps ={
     state: ProfileControl['state'],
     onSave: (user:ProfileProps) => void
-=======
-// import { Query } from "react-apollo";
-// import { gql } from "apollo-boost";
-
-// TODO: figure out how to get specific company data
-// const COMPANIES_QUERY = gql`
-// {
-//   companies {
-//     name
-//     id
-//   }
-// }
-// `;
-
-type editProps ={
-    state: ProfileControl['state']
->>>>>>> adding edit form
 }
 
 class NameForm extends React.Component<editProps>{
@@ -49,18 +31,11 @@ class NameForm extends React.Component<editProps>{
     handleSubmit(event:React.FormEvent<HTMLFormElement>){
         this.setState({value: event.currentTarget.value});
         if(this.validateForm()){
-<<<<<<< HEAD
             // save state to local storage
             this.props.onSave(this.state);
             console.log(userProps);
         }
         event.preventDefault();
-=======
-            // TODO: update DB and profile page data
-            this.setState({champName: this.state.user.champName });
-            console.log(userProps);
-        }
->>>>>>> adding edit form
     }
 
     /**
@@ -113,11 +88,7 @@ function EditableProfile(props:editProps){
     return (
         <div className="editProfile">
             <h1>Edit Profile</h1>
-<<<<<<< HEAD
             <NameForm state={props.state} onSave={props.onSave}/>
-=======
-            <NameForm state={props.state}/>
->>>>>>> adding edit form
         </div>
     );
 };
