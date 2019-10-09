@@ -1,6 +1,8 @@
 import React from 'react';
 import {ProfileProps, userProps} from './Common';
 import EditableProfile from './EditProfilePage';
+import StaticProfile from './StaticProfilePage';
+import {saveState, loadState} from './LocalStorage';
 // import { Query } from "react-apollo";
 // import { gql } from "apollo-boost";
 
@@ -20,18 +22,36 @@ type State = Readonly<{editable:boolean, userInfo:ProfileProps}>;
 class ProfileControl extends React.Component<ProfileProps>{
     readonly state: State;
 
+    public static defaultProps = userProps;
+    private load = true;
+
     constructor(props:ProfileProps){
         super(props);
+        let user = loadState();
         this.toggleEdit = this.toggleEdit.bind(this);
+        this.updateState = this.updateState.bind(this);
         this.render = this.render.bind(this);
-        this.state = {editable: false, userInfo: props};
+        this.state = {editable: false, userInfo: user as ProfileProps};
+        if(!this.state.userInfo.hasOwnProperty("user")){
+            this.state = {editable: false, userInfo: props};
+        }else {
+            
+        }
+        
+        console.log(this.state);
+    }
+
+    updateState(user: ProfileProps){
+        if(this.state.editable){
+            saveState({userInfo: user});
+            this.setState({editable: this.state.editable, userInfo: user});
+            this.toggleEdit();
+        }
     }
 
     toggleEdit(){
-        if(this.state.editable){
-            // TODO: save changed fields
-        }
         this.setState({editable: !this.state.editable});
+        console.log("editing!");
     }
 
     render(){
@@ -40,12 +60,12 @@ class ProfileControl extends React.Component<ProfileProps>{
         let button;
 
         if(editable){
-            display = <EditableProfile state={this.state}/>;
-            button = <button onClick={this.toggleEdit}>Save</button>
+            display = <EditableProfile state={this.state} onSave={this.updateState}/>;
             console.log(userProps);
             // this.setState({userInfo: userProps});
         } else {
-            display = <StaticProfile user={this.props.user} facilities={this.props.facilities}/>;
+            console.log(this.state);
+            display = <StaticProfile user={this.state.userInfo.user} facilities={this.state.userInfo.facilities}/>;
             button = <button onClick={this.toggleEdit}>Edit</button>
             console.log(this.props);
         }
@@ -57,31 +77,6 @@ class ProfileControl extends React.Component<ProfileProps>{
             </div>
         )
     }
-}
-
-// TODO
-const FacilityInformation = (
-    <div className="profileInfo">
-    </div>
-);
-
-function ProfileInformation(props:ProfileProps) {
-    return(
-    <div className="profileInfo">
-        <p><b>Champion Name:</b> {props.user.champName} </p>
-        <p><b>Company Name:</b> {props.user.compName} </p>
-        <p><b>Company Address:</b> {props.user.address}</p>
-        <p><b>Company Phone Number:</b> {props.user.phoneNumber}</p>
-        <p><b>Email Address:</b> {props.user.email}</p>
-    </div>
-);}
-
-function StaticProfile(props:ProfileProps) {
-    return(<div>
-        <h1>Test Profile Page</h1>
-        <ProfileInformation user={props.user} facilities={props.facilities}/>
-        {FacilityInformation}
-    </div>);
 }
 
 const ProfilePage: React.FC = () => {
