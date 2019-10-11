@@ -1,6 +1,6 @@
 import React from 'react';
 import {AppBar, Box, makeStyles, Theme, Tab, Tabs, Typography} from '@material-ui/core';
-import {Link} from 'react-router-dom';
+import {Link, RouteComponentProps} from 'react-router-dom';
 import { withStyles, createStyles } from '@material-ui/styles';
 
 // color values
@@ -87,7 +87,12 @@ function RedirectToPage() {
 
 }
 
-function Navbar() {
+interface ChildComponentProps extends RouteComponentProps<any> {
+  /* other props for ChildComponent */
+  //history: History
+}
+
+function Navbar(/*props: React.SFC<ChildComponentProps>*/) {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
  
@@ -100,8 +105,9 @@ function Navbar() {
       <AppBar position="static">
 
         <NavbarTabs value={value} onChange={handleChange} aria-label="tabs">
-          <NavbarTab label="Landing Page" /*onClick={() => history.push("/")}*/ {...a11yProps(0)}><Link to="/companies"/></NavbarTab>
-          <NavbarTab label="Companies Page" /*onClick={() => history.push("/companies")}*/ {...a11yProps(1)}><Link to="/companies"/></NavbarTab>
+          <Link to="/"><NavbarTab label="Landing Page" /*onClick={() => history.push("/")}*/ {...a11yProps(0)}/></Link>
+          <Link to="/companies"><NavbarTab label="Companies Page" /*onClick={() => history.push("/companies")}*/ {...a11yProps(1)}/></Link>
+          
         </NavbarTabs>
       </AppBar>
       <TabPanel value={value} index={0}>
@@ -110,6 +116,10 @@ function Navbar() {
       <TabPanel value={value} index={1}>
         Two
       </TabPanel>
+
+
+    <Link to="/">landing</Link>
+    <Link to="/companies">companies</Link>
     </div>
   )
 
