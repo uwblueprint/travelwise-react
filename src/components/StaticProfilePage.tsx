@@ -1,7 +1,5 @@
 import React from 'react';
 import {ProfileProps} from './Common';
-import {ProfileControl} from './ProfilePage';
-import {saveState} from './LocalStorage';
 
 // TODO
 const FacilityInformation = (

@@ -1,19 +1,6 @@
 import React from 'react';
 import {ProfileProps, userProps} from './Common';
 import {ProfileControl} from './ProfilePage';
-import {saveState} from './LocalStorage';
-// import { Query } from "react-apollo";
-// import { gql } from "apollo-boost";
-
-// TODO: figure out how to get specific company data
-// const COMPANIES_QUERY = gql`
-// {
-//   companies {
-//     name
-//     id
-//   }
-// }
-// `;
 
 type editProps ={
     state: ProfileControl['state'],
