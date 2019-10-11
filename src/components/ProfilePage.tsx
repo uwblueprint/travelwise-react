@@ -66,7 +66,7 @@ class ProfileControl extends React.Component<ProfileProps>{
         } else {
             console.log(this.state);
             display = <StaticProfile user={this.state.userInfo.user} facilities={this.state.userInfo.facilities}/>;
-            button = <button onClick={this.toggleEdit}>Edit</button>
+            button = <button className="ProfilePage" onClick={this.toggleEdit}>Edit</button>
             console.log(this.props);
         }
 

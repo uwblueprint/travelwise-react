@@ -1,0 +1,21 @@
+/******************* StaticProfile Styles *****************/
+.StaticProfile{
+    color: #000000;
+}
+
+.StaticProfile h1{
+    color: #71A850;
+}
+
+.ProfilePage{
+    background-color:  #71A850;
+    border: none;
+    color: white;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    text-align: center;
+    border-radius: 10%;
+    display: inline-block;
+}

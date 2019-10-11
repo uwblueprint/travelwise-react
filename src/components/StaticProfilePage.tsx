@@ -1,5 +1,6 @@
 import React from 'react';
 import {ProfileProps} from './Common';
+import '../../css/ProfilePage.css';
 
 // TODO
 const FacilityInformation = (
@@ -20,7 +21,7 @@ function ProfileInformation(props:ProfileProps) {
 
 function StaticProfile(props:ProfileProps) {
     console.log(props);
-    return(<div>
+    return(<div className="StaticProfile">
         <h1>Test Profile Page</h1>
         <ProfileInformation user={props.user} facilities={props.facilities}/>
         {FacilityInformation}
