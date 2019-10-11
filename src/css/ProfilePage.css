@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 .StaticProfile, .EditProfile, .ProfilePage{
     color: #000000;
     font-family: Nunito;
@@ -82,6 +83,8 @@ button.ProfilePage, input[type=submit] {
 .EditProfile .Inline{
     display: flex;
 =======
+=======
+>>>>>>> f30e274... beggingins of style
 /******************* StaticProfile Styles *****************/
 .StaticProfile{
     color: #000000;
@@ -102,5 +105,8 @@ button.ProfilePage, input[type=submit] {
     text-align: center;
     border-radius: 10%;
     display: inline-block;
+<<<<<<< HEAD
 >>>>>>> 4ba5f01... adding profile page
+=======
+>>>>>>> f30e274... beggingins of style
 }
