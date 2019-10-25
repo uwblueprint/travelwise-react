@@ -1,21 +1,62 @@
-/******************* StaticProfile Styles *****************/
-.StaticProfile{
+.StaticProfile, .EditProfile, .ProfilePage{
     color: #000000;
-}
-
-.StaticProfile h1{
-    color: #71A850;
+    font-family: Nunito;
 }
 
 .ProfilePage{
-    background-color:  #71A850;
-    border: none;
-    color: white;
-    padding-left: 16px;
-    padding-right: 16px;
+    text-align: center;
+    font-family: Nunito;
+}
+
+/******************* StaticProfile Styles *****************/
+
+.StaticProfile p{
+    padding-left: 25%;
     padding-top: 8px;
     padding-bottom: 8px;
-    text-align: center;
-    border-radius: 10%;
-    display: inline-block;
+    line-height: 32px;
+}
+
+.StaticProfile h1, .EditProfile h1{
+    font-style: normal;
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 41px;
+    margin-left:25%;
+    margin-top:3%;
+}
+
+button.ProfilePage, input[type=submit] {
+    font-weight: bold;
+    background-color: #71A850;
+    border-color: #71A850;
+    color: #FFFFFF;
+    border-radius: 4px;
+    border-left-width: 10px;
+    border-right-width: 10px;
+    margin-left: 25%;
+    font-family: Nunito;
+    line-height: 28px;
+    width:80px;
+}
+
+/******************* EditProfile Styles *****************/
+
+.EditProfile label{
+    margin-left: 25%;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    line-height: 32px;
+}
+
+.EditProfile input[type=text]{
+    margin-left: 25%;
+    padding-right: 35%;
+    background: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    box-sizing: border-box;
+    border-radius: 8px;
+    height: 32px;
+    margin-bottom: 32px;
+    padding-left: 1%;
 }

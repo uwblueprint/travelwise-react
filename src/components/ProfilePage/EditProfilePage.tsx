@@ -53,27 +53,27 @@ class NameForm extends React.Component<editProps>{
         return(
             <form onSubmit={this.handleSubmit}>
                 <label>
-                    Champion Name 
+                    <b>Champion Name</b> <br />
                     <input name="champName" type="text" value={this.state.user.champName} onChange={this.handleUserChange}/>
                 </label>
                 <br/>
                 <label>
-                    Company Name 
+                    <b>Company Name</b> <br />
                     <input name="compName" type="text" value={this.state.user.compName} onChange={this.handleUserChange}/>
                 </label>
                 <br/>
                 <label>
-                    Address 
+                    <b>Address</b> <br />
                     <input name="address" type="text" value={this.state.user.address} onChange={this.handleUserChange}/>
                 </label>
                 <br/>
                 <label>
-                    Phone Number 
+                    <b>Phone Number</b> <br />
                     <input name="phoneNumber" type="text" value={this.state.user.phoneNumber} onChange={this.handleUserChange}/>
                 </label>
                 <br/>
                 <label>
-                    Email 
+                    <b>Email</b> <br />
                     <input name="email" type="text" value={this.state.user.email} onChange={this.handleUserChange}/>
                 </label>
                 <br/>
@@ -86,8 +86,8 @@ class NameForm extends React.Component<editProps>{
 // reference: https://reactjs.org/docs/forms.html
 function EditableProfile(props:editProps){
     return (
-        <div className="editProfile">
-            <h1>Edit Profile</h1>
+        <div className="EditProfile">
+            <h1>Profile Settings</h1>
             <NameForm state={props.state} onSave={props.onSave}/>
         </div>
     );
