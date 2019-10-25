@@ -138,8 +138,8 @@ class NameForm extends React.Component<editProps>{
 // reference: https://reactjs.org/docs/forms.html
 function EditableProfile(props:editProps){
     return (
-        <div className="editProfile">
-            <h1>Edit Profile</h1>
+        <div className="EditProfile">
+            <h1>Profile Settings</h1>
             <NameForm state={props.state} onSave={props.onSave}/>
         </div>
     );
