@@ -30,11 +30,15 @@ export const loadState = ():State | {} => {
     } catch (err) {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       // die
 =======
 >>>>>>> 4ba5f01... adding profile page
 =======
 >>>>>>> ba34135... user info session storage
+=======
+      // die
+>>>>>>> def3a8c... front end and db stuff
       return {};
     }
 };

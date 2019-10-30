@@ -83,6 +83,7 @@ button.ProfilePage, input[type=submit] {
 
 .EditProfile .Inline{
     display: flex;
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> f30e274... beggingins of style
@@ -161,4 +162,6 @@ button.ProfilePage, input[type=submit] {
     margin-bottom: 32px;
     padding-left: 1%;
 >>>>>>> 8845dca... updating profile css
+=======
+>>>>>>> def3a8c... front end and db stuff
 }
