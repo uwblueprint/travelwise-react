@@ -3,18 +3,6 @@ import {ProfileProps, userProps} from './Common';
 import EditableProfile from './EditProfilePage';
 import StaticProfile from './StaticProfilePage';
 import {saveState, loadState} from './LocalStorage';
-// import { Query } from "react-apollo";
-// import { gql } from "apollo-boost";
-
-// TODO: figure out how to get specific company data
-// const COMPANIES_QUERY = gql`
-// {
-//   companies {
-//     name
-//     id
-//   }
-// }
-// `;
 
 
 type State = Readonly<{editable:boolean, userInfo:ProfileProps}>;

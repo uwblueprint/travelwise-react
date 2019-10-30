@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .StaticProfile, .EditProfile, .ProfilePage{
     color: #000000;
     font-family: Nunito;
@@ -59,4 +60,47 @@ button.ProfilePage, input[type=submit] {
     height: 32px;
     margin-bottom: 32px;
     padding-left: 1%;
+}
+
+.EditProfile input[type=text][name=address]{
+    padding-bottom: 0px;
+}
+
+.EditProfile input[type=text][name=postalCode]{
+    float: right;
+    padding-right: 10%;
+    margin-left:4%;
+    margin-bottom: 0px;
+}
+
+.EditProfile input[type=text][name=city]{
+    float: left;
+    padding-right: 10%;
+    margin-bottom: 0px;
+}
+
+.EditProfile .Inline{
+    display: flex;
+=======
+/******************* StaticProfile Styles *****************/
+.StaticProfile{
+    color: #000000;
+}
+
+.StaticProfile h1{
+    color: #71A850;
+}
+
+.ProfilePage{
+    background-color:  #71A850;
+    border: none;
+    color: white;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    text-align: center;
+    border-radius: 10%;
+    display: inline-block;
+>>>>>>> 4ba5f01... adding profile page
 }

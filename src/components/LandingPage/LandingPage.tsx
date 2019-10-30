@@ -18,7 +18,7 @@ interface Data {
 const companiesList = <Query<Data> query={COMPANIES_QUERY}>
     {({ loading, error, data }) => {
         if (loading) return <div>Loading</div>;
-        if (error) return <h1>ERROR</h1>;
+        if (error) return <h1>ERROR: {error.message}</h1>;
         if (!data) return <div>no data</div>;
 
         const companies = data.companies;
