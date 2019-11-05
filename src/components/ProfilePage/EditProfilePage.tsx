@@ -12,6 +12,7 @@ type editProps ={
 class NameForm extends React.Component<editProps>{
     readonly state: ProfileProps;
 
+
     constructor(props:editProps){
         super(props);
 
