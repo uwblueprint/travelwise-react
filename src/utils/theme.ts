@@ -21,6 +21,27 @@ const theme = createMuiTheme({
     gray: {
       main: gray
     }
+  },
+  typography: {
+    fontFamily: '"Nunito Sans", sans-serif',
+    h1: {
+      fontSize: "2rem"
+    },
+    h2: {
+      fontSize: "1.5rem"
+    },
+    subtitle1: {
+      fontSize: "1.25rem"
+    },
+    body1: {
+      fontSize: "1rem"
+    },
+    body2: {
+      fontSize: "0.875rem"
+    },
+    caption: {
+      fontSize: "0.875rem"
+    }
   }
 });
 
