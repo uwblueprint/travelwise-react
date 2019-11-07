@@ -57,7 +57,6 @@ function Navbar(/*props: React.SFC<ChildComponentProps>*/) {
 
   return (
     <div className={classes.root}>
-      {/*<img src={logo} /*style={{width: 300, height: 20}}/>*/}
 
       <AppBar
        position="static"
@@ -65,8 +64,8 @@ function Navbar(/*props: React.SFC<ChildComponentProps>*/) {
         <Tabs classes={{root: classes.TabsRoot, indicator: classes.TabsIndicator}} value={value} onChange={handleChange} aria-label="tabs">
           <img src={logo} style={{width: 150, height: 50}} />
           <div style={{flexGrow: 2}}/>
-          {/*<Link to="/">*/}<Tab classes={{root: classes.TabRoot}} label="Landing Page" /*onClick={() => history.push("/")}*//>{/*</Link>*/}
-  {/*<Link to="/companies">*/}<Tab classes={{root: classes.TabRoot}} label="Companies Page" /*onClick={() => history.push("/companies")}*//>{/* </Link>*/}
+          <Tab classes={{root: classes.TabRoot}} component={Link} to="/" label="Landing Page" />
+          <Tab classes={{root: classes.TabRoot}} component={Link} to="/companies" label="Companies Page"/>
           <div style={{flexGrow: 2}}/>
         </Tabs>
       </AppBar>
