@@ -14,6 +14,12 @@ class LandingPage extends Component<{}, state> {
         this.state = {
             admin: true
         }
+
+        this.handleSave = this.handleSave.bind(this);
+    }
+
+    async handleSave(post: Array<any>) {
+        console.log("test");
     }
 
     render () {
@@ -23,7 +29,7 @@ class LandingPage extends Component<{}, state> {
             newsfeed = 
             <div>
                 <div className="section-header">Create a Post</div>
-                <CreatePost />
+                <CreatePost onSave={this.handleSave} />
                 <div className="section-header">Active Posts</div>
             </div>
         } else {

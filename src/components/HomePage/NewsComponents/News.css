@@ -1,0 +1,57 @@
+.post-form {
+    background: none;
+    width: 90%;
+    border: 1px solid #C4C4C4;
+    border-radius: 4px;
+    margin-bottom: 5%;
+}
+
+.title-input {
+    font-size: 1.2em;
+}
+
+.description-input {
+    vertical-align: text-top;
+    float: top;
+    min-height: 100px;
+    resize: none;
+}
+
+.text-input {
+    border: none;
+    width: 90%;
+    margin: 1% 2%;
+}
+
+.text-input:focus {
+    outline: none;
+}
+
+.button-container {
+    width: 98%;
+    padding: 1% 1%;
+    border-top: 1px solid #C4C4C4;
+}
+
+.post-btn {
+    cursor: pointer;
+    border: none;
+    height: 100%;
+    color: black;
+}
+
+.post-btn:focus {
+    outline: none;
+}
+
+.submit-post {
+    float: right;
+    margin-right: 1%;
+    color: #71A850;
+    border: none;
+    cursor: pointer;
+}
+
+.submit-post:focus {
+    outline: none;
+}
