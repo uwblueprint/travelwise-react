@@ -4,14 +4,40 @@ import { Query } from "react-apollo";
 import { gql } from "apollo-boost";
 
 import './HomePage.css';
+import CreatePost from './NewsComponents/CreatePost';
 
-class LandingPage extends Component {
-   render () {
+type state = {admin: boolean}
+
+class LandingPage extends Component<{}, state> {
+    constructor(props: any) {
+        super(props);
+        this.state = {
+            admin: true
+        }
+    }
+
+    render () {
+        const {admin} = this.state;
+        let newsfeed;
+        if (admin) {
+            newsfeed = 
+            <div>
+                <div className="section-header">Create a Post</div>
+                <CreatePost />
+                <div className="section-header">Active Posts</div>
+            </div>
+        } else {
+            newsfeed = 
+            <div>
+                <div className="section-header">Newsfeed</div>
+            </div>
+        }
+
         return (
             <div className="homepage-container">
                 {/** TODO: break into components */}
                 <div className="newsfeed-container">
-                    <div className="section-header">Newsfeed</div>
+                    {newsfeed}
                     <div className="newsfeed-content">
                     </div>
                 </div>
