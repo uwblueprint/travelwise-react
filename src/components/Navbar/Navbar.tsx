@@ -6,6 +6,7 @@ import { withStyles, createStyles } from '@material-ui/styles';
 import "./Navbar.css"
 
 import logo from "./TravelWise.jpg"
+import { flexbox } from '@material-ui/system';
 
 // color values
 // #71A850
@@ -15,6 +16,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     flexGrow: 1,
   },
   TabsRoot: {
+    display: 'flex',
     backgroundColor: '#FFFFFF',
   },
   TabsIndicator: { 
@@ -37,7 +39,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   TabsSelected: {},
-
 }));
 
 interface ChildComponentProps extends RouteComponentProps<any> {
@@ -58,14 +59,15 @@ function Navbar(/*props: React.SFC<ChildComponentProps>*/) {
     <div className={classes.root}>
       {/*<img src={logo} /*style={{width: 300, height: 20}}/>*/}
 
-      <AppBar position="static">
-        
-
+      <AppBar
+       position="static"
+        >
         <Tabs classes={{root: classes.TabsRoot, indicator: classes.TabsIndicator}} value={value} onChange={handleChange} aria-label="tabs">
-          
+          <img src={logo} style={{width: 150, height: 50}} />
+          <div style={{flexGrow: 2}}/>
           {/*<Link to="/">*/}<Tab classes={{root: classes.TabRoot}} label="Landing Page" /*onClick={() => history.push("/")}*//>{/*</Link>*/}
   {/*<Link to="/companies">*/}<Tab classes={{root: classes.TabRoot}} label="Companies Page" /*onClick={() => history.push("/companies")}*//>{/* </Link>*/}
-          
+          <div style={{flexGrow: 2}}/>
         </Tabs>
       </AppBar>
     </div>
