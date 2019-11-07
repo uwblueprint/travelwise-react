@@ -1,0 +1,36 @@
+.calendar {
+    border: none;
+    width: 80%;
+    margin: 5% auto;
+    color: #888888;
+}
+
+.upcoming-events-container {
+    border-top: 1px solid #C4C4C4;
+    padding: 5% 0 8% 10%;
+}
+
+.title-two {
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+.empty-events {
+    padding-top: 5%;
+    font-size: 0.8em;
+    color: #888888;
+}
+
+.event-btn-container {
+    width: 100%;
+    margin-top: 5%;
+}
+
+.events-btn {
+    float: right;
+    font-size: 0.8em;
+    margin-right: 5%;
+    text-decoration: none;
+    color: #71A850;
+    cursor: pointer;
+}

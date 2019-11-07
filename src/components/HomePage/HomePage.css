@@ -9,10 +9,7 @@
 }
 .newsfeed-content {
     width: 90%;
-    min-height: 80vh;
-    border: 1px solid #C4C4C4;
-    box-sizing: border-box;
-    border-radius: 4px;
+    min-height: 40vh;
 }
 .score-container {
     width: 35%;
@@ -29,13 +26,25 @@
 }
 .events-container {
     width: 35%;
-    min-height: 55vh;
     float: left;
 }
 
 .events-content {
     width: 100%;
-    min-height: 45vh;
+    min-height: 20vh;
+    border: 1px solid #C4C4C4;
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+
+.empty-feed {
+    width: 100%;
+    margin: 2% 0;
+    padding-top: 5%;
+    font-size: 0.8em;
+    text-align: center;
+    color: #888888;
+    min-height: 20vh;
     border: 1px solid #C4C4C4;
     box-sizing: border-box;
     border-radius: 4px;
