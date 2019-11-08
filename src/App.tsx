@@ -5,6 +5,8 @@ import ApolloClient from "apollo-boost";
 import Navbar from './components/Navbar/Navbar';
 import LandingPage from './components/LandingPage/LandingPage';
 import CompaniesPage from './components/CompaniesPage/CompaniesPage';
+import LoginPage from './components/LoginPage';
+import SignupPage from './components/SignupPage';
 import { HASURA_GRAPHQL_ADMIN_SECRET } from './utils/config'
 
 const client = new ApolloClient({
@@ -18,9 +20,10 @@ const App: React.FC = () => {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <Navbar />
         <Route path="/" exact component={LandingPage} />
         <Route path="/companies" exact component={CompaniesPage} />
+        <Route path="/login" exact component={LoginPage} />
+        <Route path="/signup" exact component={SignupPage} />
       </Router>
     </ApolloProvider>
   );
