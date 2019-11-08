@@ -2,11 +2,8 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
-import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
@@ -34,19 +31,31 @@ const useStyles = makeStyles((theme: Theme) =>
       width: '350px',
     },
     submit: {
-      margin: theme.spacing(3, 0, 2),
+      margin: theme.spacing(1, 0, 2),
       background: '#71A850',
       fontFamily: 'Nunito',
+      textTransform: 'capitalize',
+      height: 48,
+      fontWeight: 700,
     },
     header: {
       alignContent: 'left',
       marginBottom: theme.spacing(4),
       fontFamily: 'Nunito',
+      fontWeight: 900,
     },
     signup: {
       margin: theme.spacing(0, 4, 12),
       fontFamily: 'Nunito',    
     },  
+    label: {
+      fontWeight: 700,
+    },
+    input: {
+      height: 48,
+      marginTop: '8px',
+      marginBottom: '30px',
+    },
   }),
 );
 
@@ -79,20 +88,20 @@ export default function SignInSide() {
             <Typography className={classes.header} component="h1" variant="h5" align="left">
               Log In to MemberLink.
             </Typography>
-            <label>Username or email</label>
+            <label className={classes.label}>Username or email</label>
             <TextField
               variant="outlined"
-              margin="normal"
               required
               fullWidth
               id="email"
               name="email"
               autoComplete="email"
+              InputProps={{ className: classes.input, required: true }}
               autoFocus
             />
             <Grid container>
               <Grid item xs>
-                <label>Password</label>
+                <label className={classes.label}>Password</label>
               </Grid>
               <Grid item>
                 <Link href="#" variant="body2">
@@ -102,13 +111,13 @@ export default function SignInSide() {
             </Grid>
             <TextField
               variant="outlined"
-              margin="normal"
               required
               fullWidth
               name="password"
               type="password"
               id="password"
               autoComplete="current-password"
+              InputProps={{ className: classes.input, required: true }}
             />
             <Button
               type="submit"
