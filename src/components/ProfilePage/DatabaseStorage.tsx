@@ -1,7 +1,6 @@
 import React from 'react';
 import { Query, Mutation } from "react-apollo";
 import { gql } from "apollo-boost";
-import EditableProfile from './EditProfilePage';
 import {ProfileProps} from './Common';
 
 type State = Readonly<{editable: boolean, userInfo:ProfileProps}>

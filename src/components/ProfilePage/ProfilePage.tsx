@@ -50,7 +50,6 @@ class ProfileControl extends React.Component<ProfileProps>{
         if(editable){
             display = <EditableProfile state={this.state} onSave={this.updateState}/>;
             console.log(userProps);
-            // this.setState({userInfo: userProps});
         } else {
             console.log(this.state);
             display = <StaticProfile user={this.state.userInfo.user} facilities={this.state.userInfo.facilities}/>;

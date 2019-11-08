@@ -1,6 +1,6 @@
 import React from 'react';
 import {ProfileProps} from './Common';
-import '../../css/ProfilePage.css';
+import './css/ProfilePage.css';
 
 // TODO
 function FacilityInformation(props:ProfileProps){

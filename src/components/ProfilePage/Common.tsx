@@ -25,7 +25,6 @@ type UserProps ={
     postalCode: string,
     phoneNumber: string,
     email: string,
-    // password: string,
     [key: string]: string
 }
 
