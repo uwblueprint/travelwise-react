@@ -1,7 +1,6 @@
 import React from 'react';
-import {AppBar, Avatar, Box, Grid, Hidden, makeStyles, Theme, Tab, Tabs, Typography, Toolbar} from '@material-ui/core';
-import {Link, RouteComponentProps} from 'react-router-dom';
-import { withStyles, createStyles } from '@material-ui/styles';
+import {AppBar, Avatar, Hidden, makeStyles, Theme, Tab, Tabs, Typography, Toolbar} from '@material-ui/core';
+import {Link} from 'react-router-dom';
 
 import logo from "./TravelwiseLogo.svg";
 
@@ -14,6 +13,11 @@ const useStyles = makeStyles((theme: Theme) => ({
     display: 'flex',
     flexDirection: 'row',
     backgroundColor: '#FFFFFF'
+  },
+  Logo: {
+    width: 150,
+    height: 50,
+    padding: 5
   },
   TabsRoot: {
     display: 'flex',
@@ -66,19 +70,15 @@ function Navbar() {
       <AppBar classes={{root: classes.AppBarRoot}} position="static">
 
         <Hidden xsDown implementation="css">
-          <div>
-            <img src={logo} style={{width: 150, height: 50}}/>
-            <div style={{flexGrow: 2}}/>
-          </div>
+          <img src={logo} alt={"Travelwise"} className={classes.Logo}/>
         </Hidden>
+
+        <div style={{flexGrow: 2}}/>
 
         <Tabs classes={{root: classes.TabsRoot, indicator: classes.TabsIndicator}} value={value} onChange={handleChange} aria-label="tabs">
           <Tab classes={{root: classes.TabRoot}} component={Link} to="/" label="Landing" />
           <Tab classes={{root: classes.TabRoot}} component={Link} to="/companies" label="Companies"/>
         </Tabs>
-        <Hidden xsDown implementation="css">
-          <div style={{flexGrow: 2}}/>
-        </Hidden>
 
         <Toolbar>
           <Hidden xsDown implementation="css">
