@@ -1,15 +1,10 @@
 import React from 'react';
-import {AppBar, Avatar, Box, Grid, makeStyles, Theme, Tab, Tabs, Typography} from '@material-ui/core';
+import {AppBar, Avatar, Box, Grid, Hidden, makeStyles, Theme, Tab, Tabs, Typography, Toolbar} from '@material-ui/core';
 import {Link, RouteComponentProps} from 'react-router-dom';
 import { withStyles, createStyles } from '@material-ui/styles';
 
-import "./Navbar.css"
-
 import logo from "./TravelwiseLogo.svg";
 
-// color values
-// #71A850
-// #FFFFFF
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     flexGrow: 1,
@@ -47,10 +42,14 @@ const useStyles = makeStyles((theme: Theme) => ({
   TabsSelected: {},
   UserGrid: {
     display: 'flex',
-    flexDirection: 'row'
+    flexDirection: 'row',
+    border: 0
   },
-  AvatarStyle: {
-
+  
+  CompanyName: {
+    fontFamily: 'Nunito',
+    padding: 10,
+    color: "#888888"
   }
 }));
 
@@ -64,19 +63,29 @@ function Navbar() {
 
   return (
     <div className={classes.root}>
-
       <AppBar classes={{root: classes.AppBarRoot}} position="static">
-        <img src={logo} style={{width: 150, height: 50}} />
-        <div style={{flexGrow: 2}}/>
+
+        <Hidden xsDown implementation="css">
+          <div>
+            <img src={logo} style={{width: 150, height: 50}}/>
+            <div style={{flexGrow: 2}}/>
+          </div>
+        </Hidden>
+
         <Tabs classes={{root: classes.TabsRoot, indicator: classes.TabsIndicator}} value={value} onChange={handleChange} aria-label="tabs">
-          <Tab classes={{root: classes.TabRoot}} component={Link} to="/" label="Landing Page" />
-          <Tab classes={{root: classes.TabRoot}} component={Link} to="/companies" label="Companies Page"/>
+          <Tab classes={{root: classes.TabRoot}} component={Link} to="/" label="Landing" />
+          <Tab classes={{root: classes.TabRoot}} component={Link} to="/companies" label="Companies"/>
         </Tabs>
-        <div style={{flexGrow: 2}}/>
-        <Grid classes={{root: classes.UserGrid}}>
-            <Typography>aslkjfd;asd</Typography>
-            <Avatar>TW</Avatar>
-          </Grid>
+        <Hidden xsDown implementation="css">
+          <div style={{flexGrow: 2}}/>
+        </Hidden>
+
+        <Toolbar>
+          <Hidden xsDown implementation="css">
+            <Typography className={classes.CompanyName}>Company Name</Typography>
+          </Hidden>
+          <Avatar>TW</Avatar>
+        </Toolbar>
       </AppBar>
     </div>
   )
