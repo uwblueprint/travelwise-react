@@ -9,8 +9,7 @@ import {
   TableHead,
   TableRow,
   Paper,
-  Typography,
-  makeStyles
+  Typography
 } from "@material-ui/core";
 
 const companyFilesList = (
