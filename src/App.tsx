@@ -1,14 +1,16 @@
 import React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import { ApolloProvider } from "react-apollo";
 import ApolloClient from "apollo-boost";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import { ThemeProvider } from "@material-ui/styles";
+import { ApolloProvider } from "react-apollo";
+
+import theme from "./utils/theme";
+import { HASURA_GRAPHQL_ADMIN_SECRET } from "./utils/config";
+
 import Navbar from "./components/Navbar/Navbar";
 import LandingPage from "./components/LandingPage/LandingPage";
 import CompaniesPage from "./components/CompaniesPage/CompaniesPage";
-import { HASURA_GRAPHQL_ADMIN_SECRET } from "./utils/config";
 import DocumentsPage from "./components/DocumentsPage/DocumentsPage";
-import { ThemeProvider } from "@material-ui/styles";
-import theme from "./utils/theme";
 
 const client = new ApolloClient({
   uri: "https://travelwise-hasura.herokuapp.com/v1/graphql",
