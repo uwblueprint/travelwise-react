@@ -7,10 +7,10 @@ import { ApolloProvider } from "react-apollo";
 import theme from "./utils/theme";
 import { HASURA_GRAPHQL_ADMIN_SECRET } from "./utils/config";
 
-import Navbar from "./components/Navbar/Navbar";
-import LandingPage from "./components/LandingPage/LandingPage";
-import CompaniesPage from "./components/CompaniesPage/CompaniesPage";
-import DocumentsPage from "./components/DocumentsPage/DocumentsPage";
+import Navbar from "./components/Navbar";
+import LandingPage from "./pages/LandingPage";
+import CompaniesPage from "./pages/CompaniesPage";
+import DocumentsPage from "./pages/DocumentsPage";
 
 const client = new ApolloClient({
   uri: "https://travelwise-hasura.herokuapp.com/v1/graphql",
