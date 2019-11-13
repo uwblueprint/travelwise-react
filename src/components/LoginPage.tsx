@@ -25,10 +25,10 @@ const useStyles = makeStyles((theme: Theme) =>
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
-      fontFamily: 'Nunito',
     },
     form: {
       width: '350px',
+      fontFamily: 'Nunito',
     },
     submit: {
       margin: theme.spacing(1, 0, 2),
@@ -46,6 +46,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     signup: {
       margin: theme.spacing(0, 4, 12),
+      textTransform: 'capitalize',
       fontFamily: 'Nunito',    
     },  
     label: {
@@ -55,6 +56,11 @@ const useStyles = makeStyles((theme: Theme) =>
       height: 48,
       marginTop: '8px',
       marginBottom: '30px',
+    },
+    signupChild: {
+      textTransform: 'capitalize',
+      fontWeight: 700,
+      fontFamily: 'Nunito',    
     },
   }),
 );
@@ -70,15 +76,16 @@ export default function SignInSide() {
         <div className={classes.paper}>
           <Grid className={classes.signup} container alignItems="center" justify="flex-end" spacing={2}>
             <Grid item xs>
-              <Typography align="right">Didn't have an account yet?</Typography>
+              <Typography className={classes.signupChild} align="right">Didn't have an account yet?</Typography>
             </Grid>
             <Grid item>
-              <Button
+              <Button 
                 type="submit"
                 fullWidth
                 variant="outlined"
                 size="large"
                 href="/signup"
+                className={classes.signupChild}
               >
                 Sign Up
               </Button>
@@ -126,7 +133,7 @@ export default function SignInSide() {
               color="primary"
               className={classes.submit}
             >
-              Sign In
+              log in
             </Button>
           </form>
         </div>

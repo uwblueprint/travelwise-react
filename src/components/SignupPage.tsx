@@ -43,8 +43,13 @@ const useStyles = makeStyles((theme: Theme) =>
       fontFamily: 'Nunito',
       fontWeight: 900,
     },
-    signup: {
+    signin: {
       margin: theme.spacing(0, 4, 4),
+      fontFamily: 'Nunito',    
+    },
+    signinChild: {
+      textTransform: 'capitalize',
+      fontWeight: 700,
       fontFamily: 'Nunito',    
     },
     label: {
@@ -69,7 +74,7 @@ export default function SignInSide() {
       </Grid>
       <Grid item xs={12} sm={8} md={6} component={Paper} elevation={6} square>
         <div className={classes.paper}>
-          <Grid className={classes.signup} container alignItems="center" justify="flex-end" spacing={2}>
+          <Grid className={classes.signin} container alignItems="center" justify="flex-end" spacing={2}>
             <Grid item>
               <Button
                 type="submit"
@@ -77,6 +82,7 @@ export default function SignInSide() {
                 variant="outlined"
                 size="large"
                 href="/login"
+                className={classes.signinChild}
               >
                 Login
               </Button>
@@ -114,7 +120,7 @@ export default function SignInSide() {
               autoComplete="current-password"
               InputProps={{ className: classes.input, required: true }}
             />
-            <label className={classes.label}>Confirm Password</label>
+            <label className={classes.label}>Confirm password</label>
             <TextField
               variant="outlined"
               required
