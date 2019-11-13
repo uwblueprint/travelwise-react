@@ -1,7 +1,7 @@
 import React from "react";
 import { Query } from "react-apollo";
-import { CompanyFiles } from "./../../types/documentTypes";
-import { GET_COMPANY_FILES_BY_COMPANY_ID } from "./../../utils/queries";
+import { CompanyFiles } from "../types/documentTypes";
+import { GET_COMPANY_FILES_BY_COMPANY_ID } from "../utils/queries";
 import {
   Table,
   TableBody,
@@ -45,30 +45,28 @@ const companyFilesList = (
   </Query>
 );
 
-const DocumentsPage: React.FC = () => {
-  return (
-    <Paper>
-      <Table>
-        <TableHead>
-          <TableRow>
-            <TableCell>
-              <Typography>File name</Typography>
-            </TableCell>
-            <TableCell>
-              <Typography>Owner</Typography>
-            </TableCell>
-            <TableCell>
-              <Typography>Date Received</Typography>
-            </TableCell>
-            <TableCell>
-              <Typography>File Size</Typography>
-            </TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>{companyFilesList}</TableBody>
-      </Table>
-    </Paper>
-  );
-};
+const DocumentsPage: React.FC = () => (
+  <Paper>
+    <Table>
+      <TableHead>
+        <TableRow>
+          <TableCell>
+            <Typography>File name</Typography>
+          </TableCell>
+          <TableCell>
+            <Typography>Owner</Typography>
+          </TableCell>
+          <TableCell>
+            <Typography>Date Received</Typography>
+          </TableCell>
+          <TableCell>
+            <Typography>File Size</Typography>
+          </TableCell>
+        </TableRow>
+      </TableHead>
+      <TableBody>{companyFilesList}</TableBody>
+    </Table>
+  </Paper>
+);
 
 export default DocumentsPage;
