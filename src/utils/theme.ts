@@ -42,6 +42,14 @@ const theme = createMuiTheme({
     caption: {
       fontSize: "0.875rem"
     }
+  },
+  overrides: {
+    MuiButton: {
+      root: {
+        backgroundColor: green,
+        color: "#FFFFFF"
+      }
+    }
   }
 });
 
