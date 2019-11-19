@@ -70,7 +70,7 @@ export default function SignInSide() {
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
       <Grid item xs={false} sm={4} md={6} className={classes.image}>
-        <img src="./../assets/tw_logo.png" width="200" height="40" alt="logo"/>
+        <img src="tw_logo.png" width="200" height="40" alt="logoo"/>
       </Grid>
       <Grid item xs={12} sm={8} md={6} component={Paper} elevation={6} square>
         <div className={classes.paper}>
