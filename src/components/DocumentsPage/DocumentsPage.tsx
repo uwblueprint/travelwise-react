@@ -1,7 +1,10 @@
 import React from "react";
 import { Query } from "react-apollo";
 import { CompanyFiles } from "./../../types/documentTypes";
-import { GET_SENT_COMPANY_FILES_BY_COMPANY_ID } from "./../../utils/queries";
+import {
+  GET_SENT_COMPANY_FILES_BY_COMPANY_ID,
+  GET_RECEIVED_COMPANY_FILES_BY_COMPANY_ID
+} from "./../../utils/queries";
 import TableHead from "../TableHead";
 import {
   Table,
@@ -10,10 +13,14 @@ import {
   TableRow,
   Paper,
   Typography,
+  Tabs,
+  Tab,
   makeStyles,
   Box,
   Button
 } from "@material-ui/core";
+import TabPanel from "../TabPanel";
+import FileUploadModal from "./../FileUploadDialog/FileUploadDialog";
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -28,10 +35,22 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const renderCompaniesFiles = () => {
+const a11yProps = (index: Number): { id: string; "aria-controls": string } => {
+  return {
+    id: `simple-tab-${index}`,
+    "aria-controls": `simple-tabpanel-${index}`
+  };
+};
+
+const renderCompaniesFiles = (fileType: string): JSX.Element => {
+  const isSentFiles = fileType === "SENT";
   return (
     <Query<CompanyFiles>
-      query={GET_SENT_COMPANY_FILES_BY_COMPANY_ID}
+      query={
+        isSentFiles
+          ? GET_SENT_COMPANY_FILES_BY_COMPANY_ID
+          : GET_RECEIVED_COMPANY_FILES_BY_COMPANY_ID
+      }
       variables={{ companyId: 1 }}
     >
       {({ loading, error, data }) => {
@@ -46,13 +65,15 @@ const renderCompaniesFiles = () => {
             </TableRow>
           );
         }
-        console.log(data);
+
         const companyFiles = data && data.companies_files;
         return (
           companyFiles &&
           companyFiles.map(({ file, to_company, from_company }) => (
             <TableRow>
-              <TableCell>{to_company.name}</TableCell>
+              <TableCell>
+                {isSentFiles ? to_company.name : from_company}
+              </TableCell>
               <TableCell>{file.title}</TableCell>
               <TableCell>{file.date_created}</TableCell>
               <TableCell>{file.file_size}</TableCell>
@@ -66,18 +87,47 @@ const renderCompaniesFiles = () => {
 
 const DocumentsPage: React.FC = () => {
   const classes = useStyles();
+  const [index, setIndex] = React.useState(0);
+  const [isDialogOpen, setIsDialogOpen] = React.useState(false);
+
   return (
     <>
       <Box className={classes.container}>
-        <input type="document" />
-        <Button>Upload</Button>
+        <input type="text" name="search" />
+        <Button onClick={() => setIsDialogOpen(true)}>Upload</Button>
       </Box>
-      <Table>
-        <TableHead
-          columnNames={["Sent to", "File name", "Date Sent", "File Size"]}
+      <Tabs value={index} aria-label="tabs" indicatorColor="primary">
+        <Tab
+          label="Received Documents"
+          onClick={() => setIndex(0)}
+          {...a11yProps(0)}
         />
-        <TableBody>{renderCompaniesFiles()}</TableBody>
-      </Table>
+        <Tab
+          label="Sent Documents"
+          onClick={() => setIndex(1)}
+          {...a11yProps(1)}
+        />
+      </Tabs>
+      <TabPanel value={0} index={index}>
+        <Table>
+          <TableHead
+            columnNames={["Sent to", "File name", "Date Sent", "File Size"]}
+          />
+          <TableBody>{renderCompaniesFiles("SENT")}</TableBody>
+        </Table>
+      </TabPanel>
+      <TabPanel value={1} index={index}>
+        <Table>
+          <TableHead
+            columnNames={["From", "File name", "Date Sent", "File Size"]}
+          />
+          <TableBody>{renderCompaniesFiles("RECEIVED")}</TableBody>
+        </Table>
+      </TabPanel>
+      <FileUploadModal
+        open={isDialogOpen}
+        onClose={() => setIsDialogOpen(false)}
+      />
     </>
   );
 };

@@ -49,6 +49,31 @@ const theme = createMuiTheme({
         backgroundColor: green,
         color: "#FFFFFF"
       }
+    },
+    MuiTabs: {
+      root: {
+        display: "flex",
+        backgroundColor: "#FFFFFF",
+        flexGrow: 1.5
+      }
+    },
+    MuiTab: {
+      root: {
+        textTransform: "none",
+        minWidth: 90,
+        fontFamily: "Nunito",
+        color: "#3C3C3C",
+        "&:hover": {
+          color: "#71A850",
+          opacity: 1
+        },
+        "&$selected": {
+          color: "#71A850"
+        },
+        "&:focus": {
+          color: "#71A850"
+        }
+      }
     }
   }
 });

@@ -19,4 +19,5 @@ export interface CompanyFiles {
 
 export interface DocumentDialogProps {
   open: boolean;
+  onClose: Function;
 }
