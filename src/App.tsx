@@ -11,6 +11,7 @@ import Navbar from "./components/Navbar";
 import LandingPage from "./pages/LandingPage";
 import CompaniesPage from "./pages/CompaniesPage";
 import DocumentsPage from "./pages/DocumentsPage";
+import SurveyPage from "./pages/SurveyPage";
 
 const client = new ApolloClient({
   uri: "https://travelwise-hasura.herokuapp.com/v1/graphql",
@@ -28,6 +29,7 @@ const App: React.FC = () => {
           <Route path="/" exact component={LandingPage} />
           <Route path="/companies" exact component={CompaniesPage} />
           <Route path="/documents" exact component={DocumentsPage} />
+          <Route path="/surveys" exact component={SurveyPage} />
         </Router>
       </ThemeProvider>
     </ApolloProvider>
