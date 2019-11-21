@@ -12,7 +12,6 @@ type State = Readonly<{editable: boolean, userInfo:ProfileProps}>
 // TODO: update to an actual ID
 const userId = 1;
 
-// TODO: determine if this query even works
 const USER_QUERY = gql`{
   users(where: {id: {_eq: ${userId}}}) {
     first_name,
@@ -41,10 +40,9 @@ const USER_INPUT = gql`
 
 // TODO: create update users
 // INPUT OBJECT TYPE - graphql?: https://graphql.org/learn/schema/#input-types 
-// TODO: detemine what type the ID field is
 const USER_MUTATION = gql`
 {
-    mutation update_users($user: User, $id: serial) {
+    mutation update_users($user: User, $id: Int) {
         user(id: $id){
             id
             champion
@@ -84,11 +82,11 @@ const userToInsert = {
 const userMutation= <Mutation<Data> mutation={USER_MUTATION} variables={{state : ""}}>
     {() => {
 
-        return <div><p>sad</p></div> //<EditableProfile state={state} onSave={state.updateState}/>;
+        return <div><p>temp</p></div> //<EditableProfile state={state} onSave={state.updateState}/>;
     }}
 </Mutation>
 
-//TODO: determine how to return just JSON packet with certain info
+
 const userInfo = <Query<Data> query={USER_QUERY}>
     {({ loading, error, data }) => {
         if (loading) return <div>Loading</div>;

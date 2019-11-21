@@ -49,7 +49,6 @@ class NameForm extends React.Component<editProps>{
     * @returns {boolean} - Whether the form is valid or not
     */
     private validateForm(): boolean {
-        // TODO: validate form
         if(this.state.user.champName === ""){
             alert("Name must be filled out");
             return false;
