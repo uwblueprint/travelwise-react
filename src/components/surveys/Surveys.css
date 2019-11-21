@@ -1,3 +1,6 @@
+
+/* Ranking */
+
 .ranking label, .ranking input {
    display:block;
    position:absolute;
@@ -34,4 +37,56 @@
    width:100px;
    height:40px;
    position:relative;
+}
+
+/*Radio Grid*/
+
+.radio-grid-row {
+    margin-bottom: 1em
+  }
+  .radio-grid-row, .radio-grid-header {
+    display:flex;
+  /*   flex: 1 0 auto; */
+  /*   height: auto; */
+  }
+  .radio-grid-header {
+    align-items: flex-end;
+  }
+  .radio-grid-header-item {
+    width:100px;
+    text-align:center;
+  /*   border:1px solid transparent; */
+  }
+  .radio-grid-header-item:nth-child(1) {
+    width:180px;
+  }
+  .subtitle {
+    font-size: 0.7em;
+  }
+  .radio-grid-item:before {
+    content: '';
+    padding-top:26%;
+  }
+  .radio-grid-item {
+    display:flex;
+  /*   flex-basis:25%; */
+    width:100px;
+    border-bottom:1px solid #ccc;
+    justify-content: center;
+    align-items:center;
+  /*   text-align:left; */
+    font-size: 1em;
+    font-weight:normal;
+    color:#999;
+  }
+  .radio-grid-item:nth-child(1) {
+    border:none;
+    font-size:1.15em;
+    color:#000;
+    width:180px;
+    justify-content: left;
+  }
+  li {
+    margin-top: 1%;
+    list-style-type: none;
 }
