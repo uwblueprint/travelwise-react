@@ -1,8 +1,8 @@
 import React from 'react';
-import {ProfileProps, userProps} from './Common';
-import EditableProfile from './EditProfilePage';
-import StaticProfile from './StaticProfilePage';
-import {saveState, loadState} from './LocalStorage';
+import {ProfileProps, userProps} from '../components/ProfilePage/Common';
+import EditableProfile from '../components/ProfilePage/EditProfilePage';
+import StaticProfile from '../components/ProfilePage/StaticProfilePage';
+import {saveState, loadState} from '../components/ProfilePage/LocalStorage';
 
 
 type State = Readonly<{editable:boolean, userInfo:ProfileProps}>;
@@ -25,8 +25,6 @@ class ProfileControl extends React.Component<ProfileProps>{
         }else {
             
         }
-        
-        console.log(this.state);
     }
 
     updateState(user: ProfileProps){
@@ -39,7 +37,6 @@ class ProfileControl extends React.Component<ProfileProps>{
 
     toggleEdit(){
         this.setState({editable: !this.state.editable});
-        console.log("editing!");
     }
 
     render(){
@@ -49,12 +46,9 @@ class ProfileControl extends React.Component<ProfileProps>{
 
         if(editable){
             display = <EditableProfile state={this.state} onSave={this.updateState}/>;
-            console.log(userProps);
         } else {
-            console.log(this.state);
             display = <StaticProfile user={this.state.userInfo.user} facilities={this.state.userInfo.facilities}/>;
             button = <button className="ProfilePage" onClick={this.toggleEdit}>Edit</button>
-            console.log(this.props);
         }
 
         return (

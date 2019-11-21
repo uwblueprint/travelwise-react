@@ -1,6 +1,6 @@
 import React from 'react';
 import {ProfileProps, userProps} from './Common';
-import {ProfileControl} from './ProfilePage';
+import {ProfileControl} from '../../pages/ProfilePage';
 
 // TODO: figure out how pws are being stored + add functionality to change it???
 

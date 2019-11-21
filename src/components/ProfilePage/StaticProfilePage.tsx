@@ -22,7 +22,6 @@ function ProfileInformation(props:ProfileProps) {
 );}
 
 function StaticProfile(props:ProfileProps) {
-    console.log(props);
     return(<div className="StaticProfile">
         <h1>User Profile</h1>
         <ProfileInformation user={props.user} facilities={props.facilities}/>
