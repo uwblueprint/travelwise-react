@@ -18,7 +18,7 @@ query questions($sID: Int){
         type
         id
         name
-        options {
+        options(order_by: {id: asc}) {
           id
           value
         }
