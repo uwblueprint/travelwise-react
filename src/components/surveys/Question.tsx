@@ -2,9 +2,10 @@ import React from 'react';
 import {Radio, RadioGrid} from './Radio';
 import Ranking from './Ranking';
 import MultipleSelect from './Checkboxes';
+import Textarea from './Textarea';
 
 // TODO: coordinate enum class with DB question type values
-const QuestionsEnum = {"radio":1, "radio_grid":2, "ranking":3, "multiselect":4};
+const QuestionsEnum = {"radio":1, "radio_grid":2, "ranking":3, "multiselect":4, "textarea":5};
 Object.freeze(QuestionsEnum);
 
 // questions have a name, as well as options
@@ -33,6 +34,9 @@ const questionMap = {
     [QuestionsEnum.multiselect] : (props : Props) =>{
       return <MultipleSelect {... props}/>
     },
+    [QuestionsEnum.textarea] : (props : Props) =>{
+      return <Textarea {... props}/>
+    },
 }
 
 class QuestionWrapper extends React.Component<Props> {
@@ -46,6 +50,8 @@ class QuestionWrapper extends React.Component<Props> {
         QuestionComponent = questionMap[QuestionsEnum.ranking](this.props);
       }else if(this.props.type === "multiselect"){
         QuestionComponent = questionMap[QuestionsEnum.multiselect](this.props);
+      }else if(this.props.type === "textarea"){
+        QuestionComponent = questionMap[QuestionsEnum.textarea](this.props);
       }
       var classNames = 'question';
   
