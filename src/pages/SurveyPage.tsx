@@ -53,6 +53,16 @@ class Survey extends React.Component<SurveyProps>{
         // this.setState({facilities: facilities});
     }
 
+    handleSubmit(event:React.FormEvent<HTMLFormElement>){
+        // this.setState({value: event.currentTarget.value});
+        // if(this.validateForm()){
+        //     // save state to local storage
+        //     this.props.onSave(this.state);
+        //     console.log(userProps);
+        // }
+        event.preventDefault();
+    }
+
     render(){
         return (
             <div className='survey'>
@@ -88,11 +98,14 @@ class Survey extends React.Component<SurveyProps>{
         
                             const questions = data.questions;
                             return (
+                            <form onSubmit={this.handleSubmit}>
                             <ul className="list-unstyled">
                                 {questions.map(question => {
                                     return <li key={question.id}><QuestionWrapper onChange = {this.handleUserChange} {... question}/></li>
                                 })}
-                            </ul>)
+                            </ul>
+                            <input type="submit" value="Submit"/>
+                            </form>)
                             }}
                         </Query>
                     </div>)
