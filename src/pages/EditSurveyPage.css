@@ -1,0 +1,15 @@
+.EditSurveyPage .Sidebar {
+  padding: 0;
+  background-color: #fff;
+}
+
+.EditSurveyPage .EditPanel {
+  border: 1px solid #ccc;
+  position: relative;
+  background-color: #fff;
+  display: flex;
+}
+
+.EditSurveyPage .EditPanel > .Main {
+  border-right: 1px solid #ccc;
+}
