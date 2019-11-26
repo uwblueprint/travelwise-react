@@ -92,14 +92,17 @@ interface LinearProgressCardProps {
   barColor: string
 }
 
-
 const LinearProgressCard: React.FC<LinearProgressCardProps> = (props) => {
   const classes = makeStyles(() => ({
     cardStyle: {
       border: "1.36px solid #CCCCCC",
       maxWidth: 297,
       textAlign: "center",
-      padding: 31.6
+      padding: 31.6,
+      width: '21vw',
+      height: '28vw',
+      display: 'flex',
+      flexDirection: 'column'
     },
     barRoot: {
       height: 5,
@@ -108,13 +111,19 @@ const LinearProgressCard: React.FC<LinearProgressCardProps> = (props) => {
     barBar: {
       borderRadius: 10,
       backgroundColor: props.barColor
+    },
+    title: {
+      padding: 0,
+      margin: 0
     }
   }))();
 
   return(
     <Card className={classes.cardStyle}>
-      <h2>{props.title}</h2>
-      <p>{props.numerator + " / " + props.denominator}</p>
+      <h3 className={classes.title}>{props.title}</h3>
+      <div style={{flexGrow: 2}}/>
+      <h1>{props.numerator + " / " + props.denominator}</h1>
+      <div style={{flexGrow: 3}}/>
       <LinearProgress 
         variant="determinate" 
         classes={{root: classes.barRoot, bar: classes.barBar}} 
@@ -133,10 +142,10 @@ const ScorecardPage: React.FC = () => {
       <DonutComponent data={dt} pieClass='pie1' innerRadius={120} outerRadius={130} fontSize={30} title="item 1"/>
       <DonutComponent data={dt} pieClass='pie8' innerRadius={90} outerRadius={100} fontSize={15} title="item 2"/>
 
-{/*
+
       <LinearProgressCard title="title" numerator={30} denominator={40} barColor="#71A850"/>
       <LinearProgressCard title="title" numerator={30} denominator={40} barColor="#71A850"/>
-*/}
+
       <div style={{margin: '20px'}}>
         companies
         {companiesList}
