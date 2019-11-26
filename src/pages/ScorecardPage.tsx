@@ -2,7 +2,7 @@ import React from "react";
 import { Query } from "react-apollo";
 import { gql } from "apollo-boost";
 import DonutChart from "react-d3-donut";
-import { Card, LinearProgress } from "@material-ui/core";
+import { Card, LinearProgress, makeStyles } from "@material-ui/core";
 
 const COMPANIES_QUERY = gql`
   {
@@ -34,47 +34,113 @@ interface DonutComponentProps {
   data: Array<{count: number, color: string}>;
   innerRadius: number;
   outerRadius: number;
-  displayString: string;
+  title: string;
   fontSize: number;
+  pieClass: string;
 }
 
 const DonutComponent: React.FC<DonutComponentProps> = (props) => {
   var data = props.data
+  const classes = makeStyles(() => ({
+    innerNumberDiv: {
+      position: "absolute",
+      fontSize: props.fontSize,
+      fontWeight: "bold",
+      bottom: '50%',
+
+      // horizontal center
+      width: '100%',
+      textAlign: 'center',
+    },
+    innerTitleDiv: {
+      position: "absolute",
+      fontSize: props.fontSize * 0.75,
+      fontWeight: "bold",
+      top: '50%',
+
+      // horizontal center
+      width: '100%',
+      textAlign: 'center',
+    },
+    outerDiv: {
+      display: 'inline-block',
+      position: 'relative',
+    }
+  }))();
 
   return(
-    <div style={{padding: 20, textAlign: "center"}}>
-      <div style={{position: "relative", top: props.outerRadius + 0.5 * props.fontSize, fontSize: props.fontSize, fontWeight: "bold" }}>{props.displayString}</div>
+    <div className={classes.outerDiv}>
+      <div className={classes.innerNumberDiv}>{data[0].count + "/" + (data[0].count + data[1].count)}</div>
+      <div className={classes.innerTitleDiv}>{props.title}</div>
       <DonutChart
         innerRadius={props.innerRadius}
         outerRadius={props.outerRadius}
         transition={true}
         svgClass="example3"
-        pieClass="pie3"
+        pieClass={props.pieClass}
         strokeWidtn={0}
         data={data}
       />
     </div>
   )
 }
-/*
-const LinearProgressCard: React.FC = () => {
 
+interface LinearProgressCardProps {
+  title: string,
+  numerator: number,
+  denominator: number,
+  barColor: string
 }
-*/
+
+
+const LinearProgressCard: React.FC<LinearProgressCardProps> = (props) => {
+  const classes = makeStyles(() => ({
+    cardStyle: {
+      border: "1.36px solid #CCCCCC",
+      maxWidth: 297,
+      textAlign: "center",
+      padding: 31.6
+    },
+    barRoot: {
+      height: 5,
+      backgroundColor: "#CCCCCC"
+    },
+    barBar: {
+      borderRadius: 10,
+      backgroundColor: props.barColor
+    }
+  }))();
+
+  return(
+    <Card className={classes.cardStyle}>
+      <h2>{props.title}</h2>
+      <p>{props.numerator + " / " + props.denominator}</p>
+      <LinearProgress 
+        variant="determinate" 
+        classes={{root: classes.barRoot, bar: classes.barBar}} 
+        value={props.numerator/props.denominator*100}
+      />
+    </Card>
+  )
+}
+
 
 const ScorecardPage: React.FC = () => {
   var dt = [{count: 3, color: "#1978BE"}, {count: 1, color: '#F3F3F3'}]
   return (
-    <div>
+    <div style={{margin: '20px'}}>
       
-      <DonutComponent data={dt} innerRadius={120} outerRadius={130} fontSize={30} displayString="12/30"/>
-      <Card style={{width: 300}}>
-        <LinearProgress variant="determinate" value={50} />
-      </Card>
-      
+      <DonutComponent data={dt} pieClass='pie1' innerRadius={120} outerRadius={130} fontSize={30} title="item 1"/>
+      <DonutComponent data={dt} pieClass='pie8' innerRadius={90} outerRadius={100} fontSize={15} title="item 2"/>
 
-      companies
-      {companiesList}
+{/*
+      <LinearProgressCard title="title" numerator={30} denominator={40} barColor="#71A850"/>
+      <LinearProgressCard title="title" numerator={30} denominator={40} barColor="#71A850"/>
+*/}
+      <div style={{margin: '20px'}}>
+        companies
+        {companiesList}
+      </div>
     </div>
   );
 };
