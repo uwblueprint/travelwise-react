@@ -12,6 +12,7 @@ import LandingPage from "./pages/LandingPage";
 import CompaniesPage from "./pages/CompaniesPage";
 import DocumentsPage from "./pages/DocumentsPage";
 import SurveyPage from "./pages/SurveyPage";
+import EditSurveyPage from "./pages/EditSurveyPage";
 import ProfilePage from './pages/ProfilePage';
 
 const client = new ApolloClient({
@@ -31,7 +32,8 @@ const App: React.FC = () => {
           <Route path="/companies" exact component={CompaniesPage} />
           <Route path="/documents" exact component={DocumentsPage} />
           <Route path="/surveys" exact component={SurveyPage} />
-        <Route path="/profile" exact component={ProfilePage} />
+          <Route path="/editsurvey" exact component={EditSurveyPage} />
+          <Route path="/profile" exact component={ProfilePage} />
         </Router>
       </ThemeProvider>
     </ApolloProvider>

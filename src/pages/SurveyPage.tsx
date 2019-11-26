@@ -40,6 +40,14 @@ interface SurveyData {
 }
 
 class Survey extends React.Component<SurveyProps>{
+    constructor(props:SurveyProps){
+        super(props);
+
+        this.handleUserChange = this.handleUserChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.render = this.render.bind(this);
+    }
+
     public handleUserChange(event:React.ChangeEvent<HTMLInputElement>){
         const name = event.target.name;
         const value = event.target.value;
