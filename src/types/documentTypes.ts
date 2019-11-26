@@ -19,5 +19,12 @@ export interface CompanyFiles {
 
 export interface DocumentDialogProps {
   open: boolean;
-  onClose: Function;
+  onClose: () => void;
+}
+
+export interface Companies {
+  companies: Array<{
+    name: string;
+    id: string;
+  }>;
 }
