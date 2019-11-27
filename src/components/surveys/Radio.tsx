@@ -28,6 +28,7 @@ class RadioGrid extends React.Component<QuestionProps>{
                 {options.map((option, index) => (
                     <div key={option.id} className='radio-grid-header-item'>
                         {option.value}
+                        {console.log(option.id)}
                     </div>
                 ))}
                 </div>
