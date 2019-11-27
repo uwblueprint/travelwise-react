@@ -96,17 +96,21 @@ const LinearProgressCard: React.FC<LinearProgressCardProps> = (props) => {
   const classes = makeStyles(() => ({
     cardStyle: {
       border: "1.36px solid #CCCCCC",
-      maxWidth: 297,
+      maxWidth: 210,
+      minWidth: 150,
+      maxHeight: 280,
+      minHeight: 200,
       textAlign: "center",
       padding: 31.6,
-      width: '21vw',
-      height: '28vw',
+      width: '15vw',
+      height: '20vw',
       display: 'flex',
-      flexDirection: 'column'
+      flexDirection: 'column',
     },
     barRoot: {
       height: 5,
-      backgroundColor: "#CCCCCC"
+      backgroundColor: "#CCCCCC",
+      borderRadius: 10
     },
     barBar: {
       borderRadius: 10,
