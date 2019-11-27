@@ -74,6 +74,11 @@ const theme = createMuiTheme({
           color: "#71A850"
         }
       }
+    },
+    MuiDialogActions: {
+      root: {
+        margin: "0.5rem 1.5rem"
+      }
     }
   }
 });

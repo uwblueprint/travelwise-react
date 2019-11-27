@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useQuery } from "@apollo/react-hooks";
 import { GET_COMPANIES } from "./../../utils/queries";
 import { Companies, DocumentDialogProps } from "./../../types/documentTypes";
+import FileDropZone from "./../FileDropZone/FileDropZone";
 import {
   Box,
   Chip,
@@ -18,7 +19,9 @@ import {
   OutlinedInput,
   Input,
   Icon,
-  IconButton
+  IconButton,
+  DialogActions,
+  Button
 } from "@material-ui/core";
 const useStyles = makeStyles(theme => ({
   input: {
@@ -39,9 +42,12 @@ const useStyles = makeStyles(theme => ({
   noLabel: {
     marginTop: theme.spacing(3)
   },
-  flexLeft: {
+  flexSpace: {
     display: "flex",
-    justifyContent: "flex-end"
+    justifyContent: "space-between"
+  },
+  bold: {
+    fontWeight: "bold"
   }
 }));
 
@@ -58,15 +64,17 @@ const FileUploadModal: React.FC<DocumentDialogProps> = ({ open, onClose }) => {
 
   return (
     <Dialog open={open} onClose={onClose}>
-      <Box height={510} minWidth={500} padding={2}>
-        <Box className={classes.flexLeft}>
+      <Box height={480} minWidth={520} padding={2}>
+        <Box className={classes.flexSpace}>
+          <DialogTitle>
+            <Typography variant="h2" className={classes.bold}>
+              Upload document
+            </Typography>
+          </DialogTitle>
           <IconButton aria-label="close" onClick={onClose}>
             <Icon>close</Icon>
           </IconButton>
         </Box>
-        <DialogTitle>
-          <Typography variant="h2">Upload document</Typography>
-        </DialogTitle>
         <DialogContent>
           <form>
             <FormControl fullWidth>
@@ -103,9 +111,21 @@ const FileUploadModal: React.FC<DocumentDialogProps> = ({ open, onClose }) => {
                   ))}
                 }
               </Select>
+              <FileDropZone />
+              <TextField
+                id="message"
+                label="Message (Optional)"
+                multiline
+                rows="5"
+                margin="normal"
+                variant="outlined"
+              />
             </FormControl>
           </form>
         </DialogContent>
+        <DialogActions>
+          <Button type="submit">Send</Button>
+        </DialogActions>
       </Box>
     </Dialog>
   );
