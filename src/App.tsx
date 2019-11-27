@@ -13,10 +13,6 @@ import CompaniesPage from "./pages/CompaniesPage";
 import DocumentsPage from "./pages/DocumentsPage";
 import SurveyPage from "./pages/SurveyPage";
 import EditSurveyPage from "./pages/EditSurveyPage";
-<<<<<<< HEAD
-=======
-import ProfilePage from './pages/ProfilePage';
->>>>>>> 4949c7f33aec64a456926fff3bd95a195a872a93
 
 const client = new ApolloClient({
   uri: "https://travelwise-hasura.herokuapp.com/v1/graphql",
@@ -34,13 +30,7 @@ const App: React.FC = () => {
           <Route path="/" exact component={LandingPage} />
           <Route path="/companies" exact component={CompaniesPage} />
           <Route path="/documents" exact component={DocumentsPage} />
-<<<<<<< HEAD
           <Route path="/surveys" exact component={EditSurveyPage} />
-=======
-          <Route path="/surveys" exact component={SurveyPage} />
-          <Route path="/editsurvey" exact component={EditSurveyPage} />
-          <Route path="/profile" exact component={ProfilePage} />
->>>>>>> 4949c7f33aec64a456926fff3bd95a195a872a93
         </Router>
       </ThemeProvider>
     </ApolloProvider>
