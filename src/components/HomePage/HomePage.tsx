@@ -42,12 +42,12 @@ class LandingPage extends Component<{}, state> {
     }
 
     async loadPosts() {
+        // query
         let response;
     }
 
     // needs to add an ID
     async handleSave(post: any) {
-        console.log(post);
         let newObj = {
             id: this.state.nextId,
             title: post.title,
