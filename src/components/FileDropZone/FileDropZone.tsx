@@ -6,7 +6,7 @@ import {
   WithStyles
 } from "@material-ui/core/styles";
 import "react-dropzone-uploader/dist/styles.css";
-import Dropzone from "react-dropzone-uploader";
+import Dropzone, { IFileWithMeta, StatusValue } from "react-dropzone-uploader";
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -26,11 +26,21 @@ const styles = (theme: Theme) =>
       color: "#888888"
     }
   });
-const FileDropZone = withStyles(styles)((props: WithStyles<typeof styles>) => {
-  const { classes } = props;
+
+interface FileDropZoneProps extends WithStyles<typeof styles> {
+  onChangeStatus?(
+    file: IFileWithMeta,
+    status: StatusValue,
+    allFiles: IFileWithMeta[]
+  ): { meta: { [name: string]: any } } | void;
+}
+const FileDropZone = withStyles(styles)((props: FileDropZoneProps) => {
+  const { classes, onChangeStatus } = props;
   return (
     <Dropzone
-      multiple={false}
+      maxFiles={1}
+      inputContent="Drop a file here or click to browse"
+      onChangeStatus={onChangeStatus}
       classNames={{
         dropzone: classes.dropzone,
         inputLabel: classes.inputLabel

@@ -3,6 +3,7 @@ import { useQuery } from "@apollo/react-hooks";
 import { GET_COMPANIES } from "./../../utils/queries";
 import { Companies, DocumentDialogProps } from "./../../types/documentTypes";
 import FileDropZone from "./../FileDropZone/FileDropZone";
+import { IFileWithMeta, StatusValue } from "react-dropzone-uploader";
 import {
   Box,
   Chip,
@@ -11,18 +12,17 @@ import {
   DialogTitle,
   TextField,
   MenuItem,
-  Typography,
   makeStyles,
   FormControl,
   InputLabel,
   Select,
-  OutlinedInput,
   Input,
   Icon,
   IconButton,
   DialogActions,
   Button
 } from "@material-ui/core";
+import ErrorMessage from "../ErrorMessage/ErrorMessage";
 const useStyles = makeStyles(theme => ({
   input: {
     width: "100%"
@@ -45,18 +45,50 @@ const useStyles = makeStyles(theme => ({
   flexSpace: {
     display: "flex",
     justifyContent: "space-between"
-  },
-  bold: {
-    fontWeight: "bold"
   }
 }));
 
 const FileUploadModal: React.FC<DocumentDialogProps> = ({ open, onClose }) => {
   const classes = useStyles();
   const [recipients, setRecipients] = useState<any>([]);
+  const [file, setFile] = useState<IFileWithMeta | null>();
+  const [message, setMessage] = useState<string>("");
+  const [errors, setErrors] = useState<{
+    recipientsError: boolean;
+    fileError: boolean;
+  }>({ recipientsError: false, fileError: false });
 
   const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
     setRecipients(event.target.value as string[]);
+  };
+
+  const handleFileChange = (
+    file: IFileWithMeta,
+    status: StatusValue,
+    allFiles: IFileWithMeta[]
+  ): { meta: { [name: string]: any } } | void => {
+    if (status === "done") {
+      setFile(file);
+    } else if (status === "aborted" || status === "removed") {
+      setFile(null);
+    }
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
+    e.preventDefault();
+    const formErrors = { ...errors };
+    if (!recipients.length) {
+      formErrors.recipientsError = true;
+      setErrors(formErrors);
+    }
+    if (!file) {
+      formErrors.fileError = true;
+      setErrors(formErrors);
+    }
+    if (recipients.length && file) {
+      setErrors({ recipientsError: false, fileError: false });
+      console.log(recipients, file, message);
+    }
   };
 
   const { loading, data } = useQuery<Companies, null>(GET_COMPANIES);
@@ -64,22 +96,21 @@ const FileUploadModal: React.FC<DocumentDialogProps> = ({ open, onClose }) => {
 
   return (
     <Dialog open={open} onClose={onClose}>
-      <Box height={480} minWidth={520} padding={2}>
+      <Box minHeight={480} minWidth={520} padding={2}>
         <Box className={classes.flexSpace}>
           <DialogTitle>
-            <Typography variant="h2" className={classes.bold}>
-              Upload document
-            </Typography>
+            <strong>Upload document</strong>
           </DialogTitle>
           <IconButton aria-label="close" onClick={onClose}>
             <Icon>close</Icon>
           </IconButton>
         </Box>
-        <DialogContent>
-          <form>
+        <form onSubmit={handleSubmit}>
+          <DialogContent>
             <FormControl fullWidth>
               <InputLabel id="recipients-label">Recipient(s)</InputLabel>
               <Select
+                error={errors.recipientsError}
                 labelId="recipients-label"
                 id="recipients"
                 multiple
@@ -91,7 +122,7 @@ const FileUploadModal: React.FC<DocumentDialogProps> = ({ open, onClose }) => {
                     {(selected as string[]).map(value => (
                       <Chip
                         key={value}
-                        label={value.split(".")[1]}
+                        label={value.split("_._")[1]}
                         className={classes.chip}
                       />
                     ))}
@@ -104,14 +135,15 @@ const FileUploadModal: React.FC<DocumentDialogProps> = ({ open, onClose }) => {
                     <MenuItem
                       key={company.id}
                       data-index={company.id}
-                      value={`${company.id}.${company.name}`}
+                      value={`${company.id}_._${company.name}`}
                     >
                       {company.name}
                     </MenuItem>
                   ))}
                 }
               </Select>
-              <FileDropZone />
+              <FileDropZone onChangeStatus={handleFileChange} />
+              {errors.fileError && <ErrorMessage message="File Required" />}
               <TextField
                 id="message"
                 label="Message (Optional)"
@@ -119,13 +151,20 @@ const FileUploadModal: React.FC<DocumentDialogProps> = ({ open, onClose }) => {
                 rows="5"
                 margin="normal"
                 variant="outlined"
+                onChange={(
+                  event: React.ChangeEvent<
+                    HTMLInputElement | HTMLTextAreaElement
+                  >
+                ) => {
+                  setMessage(event.target.value);
+                }}
               />
             </FormControl>
-          </form>
-        </DialogContent>
-        <DialogActions>
-          <Button type="submit">Send</Button>
-        </DialogActions>
+          </DialogContent>
+          <DialogActions>
+            <Button type="submit">Send</Button>
+          </DialogActions>
+        </form>
       </Box>
     </Dialog>
   );
