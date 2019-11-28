@@ -18,9 +18,14 @@ class EventsView extends Component<props,state> {
 
     render() {
         const {events, admin} = this.state;
-        let eventsList;
+        let eventHeader, eventsList;
 
         // change title and hyperlink if admin
+        if (admin) {
+            eventHeader = <div className="title-two">Scheduled Events</div>
+        } else {
+            eventHeader = <div className="title-two">Upcoming Events</div>
+        }
 
         if (events.length != 0) {
             // map to objects
@@ -39,7 +44,7 @@ class EventsView extends Component<props,state> {
             <div className="upcoming-container">
                 <Calendar className="calendar"/>
                 <div className="upcoming-events-container">
-                    <div className="title-two">Upcoming Events</div>
+                    {eventHeader}
                     {eventsList}
                     <div className="event-btn-container">
                         <a className="events-btn" href="">View All Events</a>

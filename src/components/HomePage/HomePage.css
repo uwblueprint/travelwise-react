@@ -1,32 +1,23 @@
 .homepage-container {
     width: 90%;
-    margin: 0 auto;
+    margin: 3% auto;
 }
+
 .newsfeed-container {
     width: 65%;
     min-height: 90vh;
     float: left;
 }
+
 .newsfeed-content {
     width: 90%;
     min-height: 40vh;
 }
-.score-container {
-    width: 35%;
-    min-height: 35vh;
-    float: left;
-}
-.score-content {
-    width: 100%;
-    min-height: 25vh;
-    border: 1px solid #C4C4C4;
-    box-sizing: border-box;
-    border-radius: 4px;
-    padding: 5% 0 0 10%;
-}
+
 .events-container {
     width: 35%;
     float: left;
+    margin-bottom: 5%;
 }
 
 .events-content {

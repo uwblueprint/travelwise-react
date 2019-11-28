@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import DonutChart from 'react-d3-donut';
 import { Query } from "react-apollo";
 import { gql } from "apollo-boost";
 
 import './HomePage.css';
 import CreatePost from './NewsComponents/CreatePost';
 import EventsView from './EventComponents/EventsView';
+import ScoreView from './ScoreComponents/ScoreView';
 
 type state = {admin: boolean, posts: Array<any>}
 
@@ -35,20 +35,22 @@ class LandingPage extends Component<{}, state> {
 
     render () {
         const {admin, posts} = this.state;
-        let adminFeed, newsfeed;
+        let newsHeader, newsfeed, score;
         if (admin) {
-            adminFeed = 
+            newsHeader = 
             <div>
                 <div className="section-header">Create a Post</div>
                 <CreatePost onSave={this.handleSave} />
                 <div className="section-header">Active Posts</div>
             </div>
+            
             // don't show score container
         } else {
-            adminFeed = 
+            newsHeader = 
             <div>
                 <div className="section-header">Newsfeed</div>
             </div>
+            score = <ScoreView/>
         }
 
         if (posts.length != 0){
@@ -68,35 +70,12 @@ class LandingPage extends Component<{}, state> {
         return (
             <div className="homepage-container">
                 <div className="newsfeed-container">
-                    {adminFeed}
+                    {newsHeader}
                     <div className="newsfeed-content">
                         {newsfeed}
                     </div>
                 </div>
-                <div className="score-container">
-                    <div className="section-header">Your Score</div>
-                    <div className="score-content">
-                    <DonutChart
-                        innerRadius={45}
-                        outerRadius={60}
-                        transition={false}
-                        svgClass="score"
-                        pieClass="score-donut"
-                        displayTooltip={false}
-                        strokeWidth={3}
-                        data={[
-                            {
-                                count: 7,  
-                                color: 'lightgreen'  
-                            },
-                            {
-                                count: 3,
-                                color: 'white'
-                            }
-                        ]} 
-                    />
-                    </div>
-                </div>
+                <ScoreView/>
                 <div className="events-container">
                     <div className="section-header">Events</div>
                     <div className="events-content">
