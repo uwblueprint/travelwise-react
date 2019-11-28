@@ -64,7 +64,6 @@ class CreatePost extends Component<props, state> {
                     </Form.Field>
                     <div className="button-container">
                         <button className="post-btn">file image outline</button>
-                        <button className="post-btn">linkify</button>
                         <Button className="submit-post" type="submit">Create Post</Button>
                     </div>
                 </Form>

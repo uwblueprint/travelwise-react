@@ -6,15 +6,36 @@ import './HomePage.css';
 import CreatePost from './NewsComponents/CreatePost';
 import EventsView from './EventComponents/EventsView';
 import ScoreView from './ScoreComponents/ScoreView';
+import NewsPost from './NewsComponents/NewsPost';
 
-type state = {admin: boolean, posts: Array<any>}
+type state = {admin: boolean, posts: Array<any>, nextId: number}
 
 class LandingPage extends Component<{}, state> {
     constructor(props: any) {
         super(props);
         this.state = {
             admin: true,
-            posts: []
+            posts: [
+                {
+                    id: 1,
+                    title:'Post 1',
+                    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                    author: 'TravelWise',
+                    img: '',
+                    subtitle: '',
+                    datetime: ''
+                },
+                {
+                    id: 2,
+                    title:'Post 2',
+                    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                    author: 'TravelWise',
+                    img: '',
+                    subtitle: '',
+                    datetime: ''
+                }
+            ],
+            nextId: 3
         }
 
         this.handleSave = this.handleSave.bind(this);
@@ -25,11 +46,26 @@ class LandingPage extends Component<{}, state> {
     }
 
     // needs to add an ID
-    async handleSave(post: Array<any>) {
-        console.log("test");
+    async handleSave(post: any) {
+        console.log(post);
+        let newObj = {
+            id: this.state.nextId,
+            title: post.title,
+            description: post.description,
+            img: post.img,
+            subtitle: post.img,
+            author: 'TravelWise',
+            datetime: post.datetime
+        }
+        // save to DB
+
+        this.setState({ 
+            posts: [...this.state.posts, newObj],
+            nextId: newObj.id+1
+        });
     }
 
-    componentWillMount(){
+    componentDidMount(){
         this.loadPosts();
     }
 
@@ -43,8 +79,7 @@ class LandingPage extends Component<{}, state> {
                 <CreatePost onSave={this.handleSave} />
                 <div className="section-header">Active Posts</div>
             </div>
-            
-            // don't show score container
+
         } else {
             newsHeader = 
             <div>
@@ -54,11 +89,10 @@ class LandingPage extends Component<{}, state> {
         }
 
         if (posts.length != 0){
-            // map to objects
-            newsfeed = 
-            <div>
-                a bunch of posts
-            </div>
+            newsfeed = this.state.posts.map((element) => {
+                return (<NewsPost key={element.id} {...element} />)
+            });
+            
         } else {
             // should have an image here
             newsfeed =
@@ -75,7 +109,7 @@ class LandingPage extends Component<{}, state> {
                         {newsfeed}
                     </div>
                 </div>
-                <ScoreView/>
+                {score}
                 <div className="events-container">
                     <div className="section-header">Events</div>
                     <div className="events-content">
