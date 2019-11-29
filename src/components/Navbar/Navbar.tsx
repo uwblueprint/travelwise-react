@@ -2,8 +2,15 @@ import React from "react";
 import {
   AppBar,
   Avatar,
+  ClickAwayListener,
+  Grow,
   Hidden,
+  IconButton,
+  MenuList,
+  MenuItem,
   makeStyles,
+  Paper,
+  Popper,
   Tab,
   Tabs,
   Typography,
@@ -57,7 +64,7 @@ const useStyles = makeStyles(() => ({
   UserGrid: {
     display: "flex",
     flexDirection: "row",
-    border: 0
+    border: 0,
   },
   CompanyName: {
     fontFamily: "Nunito",
@@ -66,12 +73,42 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
+
+const DropdownStyle ={
+  top: "100%",
+  left: "auto",
+  width: "200px",
+  right: "25px"
+}
+
+const IconStyle ={
+  flex: "0 0 auto",
+  color: "rgba(0, 0, 0, 0.54)",
+  padding: "12px",
+  overflow: "visible",
+  fontSize: "1.5rem",
+  transition: "background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
+  borderRadius: "0%"
+}
+
 function Navbar() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
+  const [auth, setAuth] = React.useState(true);
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
+  const anchorRef = React.useRef<HTMLButtonElement>(null);
 
   const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
     setValue(newValue);
+  };
+
+  const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+  
+  const handleClose = () => {
+    setAnchorEl(null);
   };
 
   return (
@@ -108,12 +145,36 @@ function Navbar() {
         </Tabs>
 
         <Toolbar>
-          <Hidden xsDown implementation="css">
-            <Typography className={classes.CompanyName}>
-              Company Name
-            </Typography>
-          </Hidden>
-          <Avatar>TW</Avatar>
+          <IconButton
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleMenu}
+                color="inherit"
+                style={IconStyle}
+              >
+                <Typography className={classes.CompanyName}>
+                  Company Name
+                </Typography>
+                <Avatar>TW</Avatar>
+          </IconButton>
+          <Popper open={open} style={DropdownStyle} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
+              {({ TransitionProps, placement }) => (
+            <Grow
+              {...TransitionProps}
+              style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
+            >
+              <Paper>
+              <ClickAwayListener onClickAway={handleClose}>
+                  <MenuList autoFocusItem={open} id="menu-list-grow">
+                  <MenuItem component={Link} to="/profile">Profile</MenuItem>
+                  <MenuItem component={Link} to="/logout">Log Out</MenuItem>
+                </MenuList>
+                </ClickAwayListener>
+              </Paper>
+            </Grow>
+            )}
+          </Popper>
         </Toolbar>
       </AppBar>
     </div>
