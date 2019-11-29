@@ -23,7 +23,7 @@ class LandingPage extends Component<{}, state> {
                     author: 'TravelWise',
                     img: '',
                     subtitle: '',
-                    datetime: ''
+                    datetime: 'datetime datetime'
                 },
                 {
                     id: 2,
@@ -32,7 +32,7 @@ class LandingPage extends Component<{}, state> {
                     author: 'TravelWise',
                     img: '',
                     subtitle: '',
-                    datetime: ''
+                    datetime: 'dateTime datetime'
                 }
             ],
             nextId: 3
@@ -48,6 +48,7 @@ class LandingPage extends Component<{}, state> {
 
     // needs to add an ID
     async handleSave(post: any) {
+        let date = new Date();
         let newObj = {
             id: this.state.nextId,
             title: post.title,
@@ -55,12 +56,12 @@ class LandingPage extends Component<{}, state> {
             img: post.img,
             subtitle: post.img,
             author: 'TravelWise',
-            datetime: post.datetime
+            datetime: date.getMonth() + "-" +  date.getDate() + "-" + date.getUTCFullYear()
         }
         // save to DB
 
         this.setState({ 
-            posts: [...this.state.posts, newObj],
+            posts: [newObj, ...this.state.posts],
             nextId: newObj.id+1
         });
     }

@@ -1,18 +1,37 @@
 import React, { Component } from 'react';
+import { Form, Icon, Button } from 'semantic-ui-react';
 
-type props = { title: string, date: string, time:string, id: string }
+type state = { title: string, date: string, time: string }
+type props = { onSave: any, onClose: any }
 
-class EventForm extends Component<props,{}> {
+class EventForm extends Component<props,state> {
+    constructor(props: any) {
+        super(props);
+        this.state = {
+            title: '',
+            date: '',
+            time: ''
+        }
+
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+        e.preventDefault();
+        this.props.onSave({...this.state});
+        this.setState({
+            title: '',
+            date: '',
+            time: '',
+        });
+    }
+
     render() {
-        const {id, date, time, title} = this.props;
+        const {date, time, title} = this.state;
         return (
-            <div className="event-obj" id={id}>
-                <div className="event-date">{date}</div>
-                <div className="event-row">
-                    <div className="event-time">{time}</div>
-                    <div className="event-title">{title}</div>
-                </div>
-            </div>
+            <Form className="events-form" onSubmit={this.handleSubmit}>
+                oqpwerkpoqkwpeokx
+            </Form>
         );
     }
 }
