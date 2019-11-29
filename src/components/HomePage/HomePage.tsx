@@ -23,7 +23,7 @@ class LandingPage extends Component<{}, state> {
                     author: 'TravelWise',
                     img: '',
                     subtitle: '',
-                    datetime: 'datetime datetime'
+                    datetime: 'Jul 19, 2019, 8:00pm EST'
                 },
                 {
                     id: 2,
@@ -32,7 +32,7 @@ class LandingPage extends Component<{}, state> {
                     author: 'TravelWise',
                     img: '',
                     subtitle: '',
-                    datetime: 'dateTime datetime'
+                    datetime: 'Aug 9, 2019, 2:00pm EST'
                 }
             ],
             nextId: 3

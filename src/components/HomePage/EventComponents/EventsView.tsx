@@ -18,18 +18,17 @@ class EventsView extends Component<props,state> {
             events: [
                 {
                     id: 1,
-                    title: 'eventone',
+                    title: 'Event One',
                     details: 'asodfijaisdjf',
-                    startTime: '2-4-2019 12pm',
-                    endTime: '2-4-2019 2pm'
+                    date: 'Thursday July 25, 2019',
+                    starttime: '2pm'
                 },
                 {
                     id: 2,
-                    title: 'eventtwo',
+                    title: 'Event Two',
                     details: 'asodfijaisdjf',
-                    date: 'asdiofasdfj',
-                    startTime: '2-4-2019 1pm',
-                    endTime: '2-4-2019 2pm'
+                    date: 'Friday August 4, 2019',
+                    starttime: '5pm'
                 }
             ],
             nextId: 3,

@@ -7,7 +7,7 @@
 
 .upcoming-events-container {
     border-top: 1px solid #C4C4C4;
-    padding: 5% 0 8% 10%;
+    padding: 5% 8% 8% 8%;
 }
 
 .title-two {
@@ -35,6 +35,40 @@
     cursor: pointer;
 }
 
-.form-container {
-    
+.event-obj {
+    width: 90%;
+    margin: 4% auto 6% auto;
+}
+
+.event-date {
+    color: #888888;
+    font-family: Nunito;
+    font-style: normal;
+    font-size: 0.8em;
+    line-height: 16px;
+}
+
+.event-row {
+    width: 100%;
+    min-height: 15px;
+    margin: 7px auto;
+    padding: 1%;
+    font-family: Nunito;
+    font-style: normal;
+    font-size: 0.8em;
+    line-height: 16px;
+    border: 1px solid #C4C4C4;
+    border-radius: 4px;
+}
+
+.event-time {
+    color: #71A850;
+    float: left;
+    padding: 0 5%;
+    border-right: 1px solid #C4C4C4;
+}
+
+.event-title {
+    float: left;
+    padding: 0 10%;
 }

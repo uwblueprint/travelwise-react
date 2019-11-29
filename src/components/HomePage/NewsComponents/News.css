@@ -55,3 +55,31 @@
 .submit-post:focus {
     outline: none;
 }
+
+.post-container {
+    width: 90%;
+    margin: 4% auto;
+    padding: 3% 5% 5% 5%;
+    border: 1px solid #C4C4C4;
+    border-radius: 10px;
+}
+
+.post-title {
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 1.4em;
+    line-height: 1.6em;
+    margin: 2% 0;
+}
+
+.post-author {
+    font-size: 0.9em;
+    color: #888888;
+    margin-bottom: 2%;
+}
+
+.post-content {
+    font-size: 0.95em;
+    color: #000000;
+}
