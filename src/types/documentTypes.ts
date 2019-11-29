@@ -7,3 +7,17 @@ export interface CompanyFiles {
     }>;
   }>;
 }
+
+export interface QuestionFiles {
+  survey_id: number;
+  type: string;
+  id: number;
+  name: string;
+  category_id: number;
+  options:Array<{
+      id: string;
+      question_id: number; 
+      value: string;
+      score: number;
+  }>;
+}

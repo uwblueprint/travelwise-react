@@ -1,6 +1,11 @@
 
 /* Ranking */
 
+
+.radioGrid{
+  margin-top: 11%;
+}
+
 .ranking label, .ranking input {
    display:block;
    position:absolute;

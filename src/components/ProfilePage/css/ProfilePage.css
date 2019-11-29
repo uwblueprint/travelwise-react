@@ -51,7 +51,6 @@ button.ProfilePage, input[type=submit] {
 }
 
 .EditProfile input[type=text]{
-    margin-left: 25%;
     padding-right: 35%;
     background: #FFFFFF;
     border: 1px solid #CCCCCC;

@@ -25,10 +25,11 @@ query questions($sID: Int){
       }
 }`;
 
-type SurveyProps ={
+export type SurveyProps ={
     name: string,
     id : number,
     questions: QuestionProps[] // TODO: add answer props as well
+    category_id: number;
 }
 
 interface QuestionData {
@@ -128,6 +129,7 @@ class Survey extends React.Component<SurveyProps>{
 const testProps ={
     name: "Test 1",
     id: 1,
+    category_id: 1,
     questions:[
         {type: "radio",
         id: 1,

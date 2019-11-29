@@ -16,6 +16,7 @@ class Ranking extends React.Component<QuestionProps>{
                     </div>
                 ))}
             </div>
+
         )
     }
 }

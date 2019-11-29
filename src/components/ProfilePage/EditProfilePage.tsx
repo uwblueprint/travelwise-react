@@ -129,6 +129,7 @@ class NameForm extends React.Component<editProps>{
                     <b>Number of Offices</b> <br />
                     <input name="numOffices" type="text" value={this.state.facilities.numOffices} onChange={this.handleUserChange} placeholder="Number of Offices"/>
                 </label>
+                <br />
                 <input type="submit" value="Submit"/>
             </form>
         );
