@@ -1,72 +1,102 @@
-import React from 'react';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import Link from '@material-ui/core/Link';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import React, { FormEvent } from "react";
+import Button from "@material-ui/core/Button";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import TextField from "@material-ui/core/TextField";
+import Link from "@material-ui/core/Link";
+import Paper from "@material-ui/core/Paper";
+import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
+import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 
-const useStyles = makeStyles((theme: Theme) => 
+import API from "../services/api";
+import Hasura from "../services/hasura";
+import { gql } from "apollo-boost";
+
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      height: '100vh',
-      fontFamily: 'Nunito',
+      height: "100vh",
+      fontFamily: "Nunito"
     },
     image: {
-      backgroundImage: 'url(https://images.unsplash.com/photo-1445873014904-7dc044bd92db?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80)',
-      backgroundRepeat: 'no-repeat',
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
+      backgroundImage:
+        "url(https://images.unsplash.com/photo-1445873014904-7dc044bd92db?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80)",
+      backgroundRepeat: "no-repeat",
+      backgroundSize: "cover",
+      backgroundPosition: "center"
     },
     paper: {
       margin: theme.spacing(4, 4),
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center"
     },
     form: {
-      width: '350px',
-      fontFamily: 'Nunito',
+      width: "350px",
+      fontFamily: "Nunito"
     },
     submit: {
       margin: theme.spacing(1, 0, 2),
-      background: '#71A850',
-      fontFamily: 'Nunito',
-      textTransform: 'capitalize',
+      background: "#71A850",
+      fontFamily: "Nunito",
+      textTransform: "capitalize",
       height: 48,
-      fontWeight: 700,
+      fontWeight: 700
     },
     header: {
-      alignContent: 'left',
+      alignContent: "left",
       marginBottom: theme.spacing(4),
-      fontFamily: 'Nunito',
-      fontWeight: 900,
+      fontFamily: "Nunito",
+      fontWeight: 900
     },
     signup: {
       margin: theme.spacing(0, 4, 12),
-      textTransform: 'capitalize',
-      fontFamily: 'Nunito',    
-    },  
+      textTransform: "capitalize",
+      fontFamily: "Nunito"
+    },
     label: {
-      fontWeight: 700,
+      fontWeight: 700
     },
     input: {
       height: 48,
-      marginTop: '8px',
-      marginBottom: '30px',
+      marginTop: "8px",
+      marginBottom: "30px"
     },
     signupChild: {
-      textTransform: 'capitalize',
+      textTransform: "capitalize",
       fontWeight: 700,
-      fontFamily: 'Nunito',    
-    },
-  }),
+      fontFamily: "Nunito"
+    }
+  })
 );
 
 export default function SignInSide() {
   const classes = useStyles();
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const { elements } = e.target as any;
+    const { email, password } = elements;
+    await API.login({
+      email: email.value,
+      password: password.value
+    });
+
+    const data = await Hasura.query({
+      query: gql`
+        {
+          viewer {
+            id
+            first_name
+            last_name
+          }
+        }
+      `,
+      fetchPolicy: "network-only"
+    });
+
+    alert(JSON.stringify(data));
+  };
 
   return (
     <Grid container component="main" className={classes.root}>
@@ -74,12 +104,20 @@ export default function SignInSide() {
       <Grid item xs={false} sm={4} md={6} className={classes.image} />
       <Grid item xs={12} sm={8} md={6} component={Paper} elevation={6} square>
         <div className={classes.paper}>
-          <Grid className={classes.signup} container alignItems="center" justify="flex-end" spacing={2}>
+          <Grid
+            className={classes.signup}
+            container
+            alignItems="center"
+            justify="flex-end"
+            spacing={2}
+          >
             <Grid item xs>
-              <Typography className={classes.signupChild} align="right">Didn't have an account yet?</Typography>
+              <Typography className={classes.signupChild} align="right">
+                Didn't have an account yet?
+              </Typography>
             </Grid>
             <Grid item>
-              <Button 
+              <Button
                 type="submit"
                 fullWidth
                 variant="outlined"
@@ -91,11 +129,16 @@ export default function SignInSide() {
               </Button>
             </Grid>
           </Grid>
-          <form className={classes.form} noValidate>
-            <Typography className={classes.header} component="h1" variant="h5" align="left">
+          <form className={classes.form} onSubmit={handleSubmit} noValidate>
+            <Typography
+              className={classes.header}
+              component="h1"
+              variant="h5"
+              align="left"
+            >
               Log In to MemberLink.
             </Typography>
-            <label className={classes.label}>Username or email</label>
+            <label className={classes.label}>email</label>
             <TextField
               variant="outlined"
               required
@@ -112,7 +155,7 @@ export default function SignInSide() {
               </Grid>
               <Grid item>
                 <Link href="#" variant="body2">
-                    Forgot password?
+                  Forgot password?
                 </Link>
               </Grid>
             </Grid>

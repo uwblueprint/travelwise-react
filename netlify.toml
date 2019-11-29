@@ -1,0 +1,10 @@
+[build]
+publish = "build"
+command = "yarn build"
+
+# == Redirects ==
+# Rewrite unknown routes to index.html.
+[[redirects]]
+from = "/*"
+to = "/index.html"
+status = 200
