@@ -1,11 +1,11 @@
 import React from "react";
 import { Query } from "react-apollo";
-import { CompanyFiles } from "./../../types/documentTypes";
+import { CompanyFiles } from "../types/documentTypes";
 import {
   GET_SENT_COMPANY_FILES_BY_COMPANY_ID,
   GET_RECEIVED_COMPANY_FILES_BY_COMPANY_ID
-} from "./../../utils/queries";
-import TableHead from "../TableHead";
+} from "../utils/queries";
+import TableHead from "../components/TableHead";
 import {
   Table,
   TableBody,
@@ -19,8 +19,8 @@ import {
   Box,
   Button
 } from "@material-ui/core";
-import TabPanel from "../TabPanel";
-import FileUploadModal from "./../FileUploadDialog/FileUploadDialog";
+import TabPanel from "../components/TabPanel";
+import FileUploadModal from "../components/FileUploadDialog/FileUploadDialog";
 
 const useStyles = makeStyles(theme => ({
   container: {
