@@ -1,0 +1,20 @@
+import React, { Component } from 'react';
+
+type props = { title: string, date: string, starttime: string, details: string, id: string }
+
+class NewsPost extends Component<props,{}> {
+    render() {
+        const {id, date, starttime, title} = this.props;
+        return (
+            <div className="event-obj" id={id}>
+                <div className="event-date">{date}</div>
+                <div className="event-row">
+                    <div className="event-time">{starttime}</div>
+                    <div className="event-title">{title}</div>
+                </div>
+            </div>
+        );
+    }
+}
+
+export default NewsPost;

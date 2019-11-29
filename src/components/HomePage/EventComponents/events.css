@@ -1,0 +1,74 @@
+.calendar {
+    border: none;
+    width: 80%;
+    margin: 5% auto;
+    color: #888888;
+}
+
+.upcoming-events-container {
+    border-top: 1px solid #C4C4C4;
+    padding: 5% 8% 8% 8%;
+}
+
+.title-two {
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+.empty-events {
+    padding-top: 5%;
+    font-size: 0.8em;
+    color: #888888;
+}
+
+.event-btn-container {
+    width: 100%;
+    margin-top: 5%;
+}
+
+.events-btn {
+    float: right;
+    font-size: 0.8em;
+    margin-right: 5%;
+    text-decoration: none;
+    color: #71A850;
+    cursor: pointer;
+}
+
+.event-obj {
+    width: 90%;
+    margin: 4% auto 6% auto;
+}
+
+.event-date {
+    color: #888888;
+    font-family: Nunito;
+    font-style: normal;
+    font-size: 0.8em;
+    line-height: 16px;
+}
+
+.event-row {
+    width: 100%;
+    min-height: 15px;
+    margin: 7px auto;
+    padding: 1%;
+    font-family: Nunito;
+    font-style: normal;
+    font-size: 0.8em;
+    line-height: 16px;
+    border: 1px solid #C4C4C4;
+    border-radius: 4px;
+}
+
+.event-time {
+    color: #71A850;
+    float: left;
+    padding: 0 5%;
+    border-right: 1px solid #C4C4C4;
+}
+
+.event-title {
+    float: left;
+    padding: 0 10%;
+}
