@@ -1,6 +1,7 @@
 import React from "react";
 import ApolloClient from "apollo-boost";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import { Switch } from "react-router-dom";
 import { ThemeProvider } from "@material-ui/styles";
 import { ApolloProvider } from "react-apollo";
 
@@ -22,18 +23,33 @@ const client = new ApolloClient({
   }
 });
 
+const LoginContainer = () => (
+  <div className="container">
+    <Route path="/login" exact component={LoginPage} />
+    <Route path="/signup" exact component={SignupPage} />
+  </div>
+);
+
+const DefaultContainer = () => (
+  <div className="container">
+    <Navbar />
+    <Route path="/" exact component={LandingPage} />
+    <Route path="/companies" exact component={CompaniesPage} />
+    <Route path="/documents" exact component={DocumentsPage} />
+    <Route path="/profile" exact component={ProfilePage} />
+  </div>
+);
+
 const App: React.FC = () => {
   return (
     <ApolloProvider client={client}>
       <ThemeProvider theme={theme}>
         <Router>
-          <Navbar />
-          <Route path="/" exact component={LandingPage} />
-          <Route path="/companies" exact component={CompaniesPage} />
-          <Route path="/documents" exact component={DocumentsPage} />
-          <Route path="/profile" exact component={ProfilePage} />
-          <Route path="/login" exact component={LoginPage} />
-          <Route path="/signup" exact component={SignupPage} />
+          <Switch>
+            <Route exact path="/login" component={LoginContainer} />
+            <Route exact path="/signup" component={LoginContainer} />
+            <Route component={DefaultContainer} />
+          </Switch>
         </Router>
       </ThemeProvider>
     </ApolloProvider>
