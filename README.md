@@ -1,4 +1,5 @@
 ### HI EVERYONE PLEASE MAKE THIS LOOK GOOD. PUSH CHANGES AND PULL CHANGES OFTEN.  
+### FRONTEND ONLY HARDCODE IS BEST CODE  
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
