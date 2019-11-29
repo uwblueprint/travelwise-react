@@ -1,6 +1,7 @@
 import React from "react";
 import ApolloClient from "apollo-boost";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import { Switch } from "react-router-dom";
 import { ThemeProvider } from "@material-ui/styles";
 import { ApolloProvider } from "react-apollo";
 import HomePage from './components/HomePage/HomePage';
@@ -11,6 +12,8 @@ import Navbar from "./components/Navbar";
 import CompaniesPage from "./pages/CompaniesPage";
 import DocumentsPage from "./pages/DocumentsPage";
 import ProfilePage from './pages/ProfilePage';
+import LoginPage from './components/LoginPage';
+import SignupPage from './components/SignupPage';
 
 const client = new ApolloClient({
   uri: "https://travelwise-hasura.herokuapp.com/v1/graphql",
@@ -19,16 +22,33 @@ const client = new ApolloClient({
   }
 });
 
+const LoginContainer = () => (
+  <div className="container">
+    <Route path="/login" exact component={LoginPage} />
+    <Route path="/signup" exact component={SignupPage} />
+  </div>
+);
+
+const DefaultContainer = () => (
+  <div className="container">
+    <Navbar />
+    <Route path="/" exact component={HomePage} />
+    <Route path="/companies" exact component={CompaniesPage} />
+    <Route path="/documents" exact component={DocumentsPage} />
+    <Route path="/profile" exact component={ProfilePage} />
+  </div>
+);
+
 const App: React.FC = () => {
   return (
     <ApolloProvider client={client}>
       <ThemeProvider theme={theme}>
         <Router>
-          <Navbar />
-          <Route path="/" exact component={HomePage} />
-          <Route path="/companies" exact component={CompaniesPage} />
-          <Route path="/documents" exact component={DocumentsPage} />
-        <Route path="/profile" exact component={ProfilePage} />
+          <Switch>
+            <Route exact path="/login" component={LoginContainer} />
+            <Route exact path="/signup" component={LoginContainer} />
+            <Route component={DefaultContainer} />
+          </Switch>
         </Router>
       </ThemeProvider>
     </ApolloProvider>
