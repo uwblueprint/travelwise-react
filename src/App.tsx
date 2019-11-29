@@ -3,12 +3,11 @@ import ApolloClient from "apollo-boost";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { ThemeProvider } from "@material-ui/styles";
 import { ApolloProvider } from "react-apollo";
-
+import HomePage from './components/HomePage/HomePage';
 import theme from "./utils/theme";
 import { HASURA_GRAPHQL_ADMIN_SECRET } from "./utils/config";
 
 import Navbar from "./components/Navbar";
-import LandingPage from "./pages/LandingPage";
 import CompaniesPage from "./pages/CompaniesPage";
 import DocumentsPage from "./pages/DocumentsPage";
 import ProfilePage from './pages/ProfilePage';
@@ -26,7 +25,7 @@ const App: React.FC = () => {
       <ThemeProvider theme={theme}>
         <Router>
           <Navbar />
-          <Route path="/" exact component={LandingPage} />
+          <Route path="/" exact component={HomePage} />
           <Route path="/companies" exact component={CompaniesPage} />
           <Route path="/documents" exact component={DocumentsPage} />
         <Route path="/profile" exact component={ProfilePage} />

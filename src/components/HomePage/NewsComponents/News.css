@@ -1,0 +1,85 @@
+.post-form {
+    background: none;
+    width: 90%;
+    border: 1px solid #C4C4C4;
+    border-radius: 4px;
+    margin-bottom: 5%;
+}
+
+.title-input {
+    font-size: 1.2em;
+}
+
+.description-input {
+    vertical-align: text-top;
+    float: top;
+    min-height: 100px;
+    resize: none;
+}
+
+.text-input {
+    border: none;
+    width: 90%;
+    margin: 1% 2%;
+}
+
+.text-input:focus {
+    outline: none;
+}
+
+.button-container {
+    width: 98%;
+    padding: 1% 1%;
+    border-top: 1px solid #C4C4C4;
+}
+
+.post-btn {
+    cursor: pointer;
+    border: none;
+    height: 100%;
+    color: black;
+}
+
+.post-btn:focus {
+    outline: none;
+}
+
+.submit-post {
+    float: right;
+    margin-right: 1%;
+    color: #71A850;
+    border: none;
+    cursor: pointer;
+}
+
+.submit-post:focus {
+    outline: none;
+}
+
+.post-container {
+    width: 90%;
+    margin: 4% auto;
+    padding: 3% 5% 5% 5%;
+    border: 1px solid #C4C4C4;
+    border-radius: 10px;
+}
+
+.post-title {
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 1.4em;
+    line-height: 1.6em;
+    margin: 2% 0;
+}
+
+.post-author {
+    font-size: 0.9em;
+    color: #888888;
+    margin-bottom: 2%;
+}
+
+.post-content {
+    font-size: 0.95em;
+    color: #000000;
+}

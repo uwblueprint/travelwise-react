@@ -1,0 +1,42 @@
+.homepage-container {
+    width: 90%;
+    margin: 3% auto;
+}
+
+.newsfeed-container {
+    width: 65%;
+    min-height: 90vh;
+    float: left;
+}
+
+.newsfeed-content {
+    width: 90%;
+    min-height: 40vh;
+}
+
+.events-container {
+    width: 35%;
+    float: left;
+    margin-bottom: 5%;
+}
+
+.events-content {
+    width: 100%;
+    min-height: 20vh;
+    border: 1px solid #C4C4C4;
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+
+.empty-feed {
+    width: 100%;
+    margin: 2% 0;
+    padding-top: 5%;
+    font-size: 0.8em;
+    text-align: center;
+    color: #888888;
+    min-height: 20vh;
+    border: 1px solid #C4C4C4;
+    box-sizing: border-box;
+    border-radius: 4px;
+}
