@@ -4,6 +4,7 @@ import { GET_COMPANIES } from "./../../utils/queries";
 import { Companies, DocumentDialogProps } from "./../../types/documentTypes";
 import FileDropZone from "./../FileDropZone/FileDropZone";
 import { IFileWithMeta, StatusValue } from "react-dropzone-uploader";
+import axios from "axios";
 import {
   Box,
   Chip,
@@ -23,6 +24,7 @@ import {
   Button
 } from "@material-ui/core";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
+
 const useStyles = makeStyles(theme => ({
   input: {
     width: "100%"
@@ -48,10 +50,13 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+interface File extends IFileWithMeta, Blob {}
+const fromCompanyId = 1;
+
 const FileUploadModal: React.FC<DocumentDialogProps> = ({ open, onClose }) => {
   const classes = useStyles();
   const [recipients, setRecipients] = useState<any>([]);
-  const [file, setFile] = useState<IFileWithMeta | null>();
+  const [file, setFile] = useState<File | null>();
   const [message, setMessage] = useState<string>("");
   const [errors, setErrors] = useState<{
     recipientsError: boolean;
@@ -63,7 +68,7 @@ const FileUploadModal: React.FC<DocumentDialogProps> = ({ open, onClose }) => {
   };
 
   const handleFileChange = (
-    file: IFileWithMeta,
+    file: File,
     status: StatusValue,
     allFiles: IFileWithMeta[]
   ): { meta: { [name: string]: any } } | void => {
@@ -87,7 +92,20 @@ const FileUploadModal: React.FC<DocumentDialogProps> = ({ open, onClose }) => {
     }
     if (recipients.length && file) {
       setErrors({ recipientsError: false, fileError: false });
-      console.log(recipients, file, message);
+      const url = "localhost:3000/files/upload";
+      const formData = new FormData();
+      const toCompanyId = recipients[0].split("_._");
+      formData.append("file", file);
+      formData.append("fromCompanyId", fromCompanyId.toString());
+      formData.append("toCompanyId", toCompanyId.toString());
+      const config = {
+        headers: { "content-type": "multipart/form-data" }
+      };
+
+      //   axios
+      //     .post(url, formData, config)
+      //     .then(response => console.log(response))
+      //     .catch(console.log);
     }
   };
 
