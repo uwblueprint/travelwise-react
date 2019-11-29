@@ -42,6 +42,44 @@ const theme = createMuiTheme({
     caption: {
       fontSize: "0.875rem"
     }
+  },
+  overrides: {
+    MuiButton: {
+      root: {
+        backgroundColor: green,
+        color: "#FFFFFF"
+      }
+    },
+    MuiTabs: {
+      root: {
+        display: "flex",
+        backgroundColor: "#FFFFFF",
+        flexGrow: 1.5
+      }
+    },
+    MuiTab: {
+      root: {
+        textTransform: "none",
+        minWidth: 90,
+        fontFamily: "Nunito",
+        color: "#3C3C3C",
+        "&:hover": {
+          color: "#71A850",
+          opacity: 1
+        },
+        "&$selected": {
+          color: "#71A850"
+        },
+        "&:focus": {
+          color: "#71A850"
+        }
+      }
+    },
+    MuiDialogActions: {
+      root: {
+        margin: "0.5rem 1.5rem"
+      }
+    }
   }
 });
 

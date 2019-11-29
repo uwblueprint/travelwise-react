@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Switch } from "react-router-dom";
 import { ThemeProvider } from "@material-ui/styles";
 import { ApolloProvider } from "react-apollo";
+import { ApolloProvider as ApolloHooksProvider } from "@apollo/react-hooks";
 
 import theme from "./utils/theme";
 import { HASURA_GRAPHQL_ADMIN_SECRET } from "./utils/config";

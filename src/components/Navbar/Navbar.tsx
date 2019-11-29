@@ -105,6 +105,12 @@ function Navbar() {
             to="/companies"
             label="Companies"
           />
+          <Tab
+            classes={{ root: classes.TabRoot }}
+            component={Link}
+            to="/documents"
+            label="Documents"
+          />
         </Tabs>
 
         <Toolbar>
