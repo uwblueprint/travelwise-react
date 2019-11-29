@@ -2,8 +2,7 @@ import React from "react";
 import { Query } from "react-apollo";
 import { gql } from "apollo-boost";
 import DonutChart from "react-d3-donut";
-import { Card, LinearProgress, makeStyles } from "@material-ui/core";
-import { Checkbox } from "material-ui";
+import { Card, Checkbox, LinearProgress, makeStyles } from "@material-ui/core";
 
 const COMPANIES_QUERY = gql`
   {
@@ -186,18 +185,37 @@ const LinearProgressCard: React.FC<LinearProgressCardProps> = (props) => {
 
 interface checkListProps {
   data: Array<{name: string, isChecked: boolean}>;
+  title: string;
 }
 
 const CheckListCard: React.FC<checkListProps> = (props) => {
+  const classes = makeStyles(() => ({
+    title: {
+      color: "#71A850",
+      display: "flex",
+      margin: 30
+    },
+    checklistElt: {
+      display: "flex",
+      marginLeft: 30,
+      marginRight: 30,
+      marginTop: 5,
+      marginBottom: 5
+    }
+  }))();
+
   return (
-    <Card>
-      {/*props.data.map(elt => 
-        <div>
-          {elt.isChecked == true ? <Checkbox disabled checked/> : <Checkbox disabled />}          
-          {elt.name}
-        </div>
-      )*/}
-    </Card>
+    <div>
+      <h4 className={classes.title}>{props.title} <div style={{flexGrow: 1}}/> {"/"+props.data.length}</h4>
+      {
+        props.data.map(element =>
+        <div className={classes.checklistElt}>
+          {element.name}
+          <div style={{flexGrow: 1}}/>
+          {element.isChecked === true ? <Checkbox disabled checked /> : <Checkbox disabled />}
+        </div>)
+      }
+    </div>
   )
 }
 
@@ -205,13 +223,27 @@ const CheckListCard: React.FC<checkListProps> = (props) => {
 const ScorecardPage: React.FC = () => {
   var dt = [{count: 3, color: "#1978BE"}, {count: 1, color: '#F3F3F3'}]
   var dt2 = [{count: 15, color: "#F6C000"}, {count: 5, color: '#F3F3F3'}]
-  var flurble = [{name: "item 1", isChecked: false}, {name: "item 2", isChecked: true}]
+  var flurble = [
+    {name: "Additional Subsidies", isChecked: false},
+    {name: "Transit map is displayed", isChecked: true},
+    {name: "Located with 500m of GRT", isChecked: true}
+  ]
+
+  const classes = makeStyles(() => ({
+    checklist: {
+      border: "1.36px solid #CCCCCC",
+      maxWidth: 300,
+      minWidth: 150,
+      width: '25vw'
+    }
+  }))();
+
   return (
-    <div style={{margin: '20px'}}>
-      <div style={{display: 'flex', alignItems: 'row', justifyContent: 'center'}}>
+    <div style={{margin: '20px', display: 'flex'}}>
+      <div>
+        <div style={{display: 'flex', alignItems: 'row', justifyContent: 'center'}}>
         <DonutComponent data={dt} pieClass='pie1' innerRadius={130} outerRadius={150} fontSize={30} title="Overall Score"/>
        </div>
-      
 
         <div style={{display: 'flex', alignItems: 'column', justifyContent: 'center'}}>
           <LinearProgressCard title="Target and Achievement" numerator={15} denominator={30} barColor="#1978BE"/>
@@ -219,9 +251,13 @@ const ScorecardPage: React.FC = () => {
           {/*<LinearProgressCard title="Mode-Specific" numerator={15} denominator={30} barColor="#F6C000"/>*/}
           <DonutCard data={dt2} innerRadius={90} outerRadius={100} title={"Mode-Specific"} fontSize={20} pieClass={'pie2'} description={"A brief description."}/>
         </div>
-     
+      </div>
 
-      <CheckListCard data={flurble} />
+      <Card className={classes.checklist}>
+        <CheckListCard data={flurble} title={"Administrative"}/>
+      </Card>
+
+
 {/*
   <div style={{margin: '20px'}}>
         companies
