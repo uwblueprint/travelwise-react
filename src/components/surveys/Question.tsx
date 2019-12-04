@@ -9,16 +9,17 @@ const QuestionsEnum = {"radio":1, "radio_grid":2, "ranking":3, "multiselect":4, 
 Object.freeze(QuestionsEnum);
 
 // questions have a name, as well as options
-type Props ={
+interface Props {
     type: string;   // Use QuestionsEnum class to distinguish
-    id: number,
-    name: string,
+    id: number;
+    name: string;
     options:{
-        id: string,
-        value: string,
+        id: string;
+        value: string;
         // numInRow: number    // TODO: may not need this
-    }[],
-    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
+    }[];
+    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    [key: string]: any;
 };
 
 const questionMap = {

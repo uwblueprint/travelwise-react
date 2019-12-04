@@ -2,28 +2,7 @@ import React from 'react';
 import {QuestionProps, QuestionWrapper} from '../components/surveys/Question';
 import '../components/surveys/Surveys.css';
 import { Query } from "react-apollo";
-import { gql } from "apollo-boost";
-
-const SURVEY_QUERY = gql`
-{
-    surveys(where:{active: {_eq: true}}){
-        name
-        id
-    }
-}`;
-
-const QUESTION_QUERY = gql`
-query questions($sID: Int){
-    questions(where: {survey_id: {_eq: $sID}}) {
-        type
-        id
-        name
-        options(order_by: {id: asc}) {
-          id
-          value
-        }
-      }
-}`;
+import {SURVEY_QUERY, QUESTION_QUERY} from '../utils/queries'
 
 export type SurveyProps ={
     name: string,
