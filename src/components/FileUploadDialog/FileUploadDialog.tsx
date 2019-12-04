@@ -24,6 +24,7 @@ import {
   Button
 } from "@material-ui/core";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
+import { API_URL } from "../../utils/config";
 
 const useStyles = makeStyles(theme => ({
   input: {
@@ -56,7 +57,7 @@ const fromCompanyId = 1;
 const FileUploadModal: React.FC<DocumentDialogProps> = ({ open, onClose }) => {
   const classes = useStyles();
   const [recipients, setRecipients] = useState<any>([]);
-  const [file, setFile] = useState<File | null>();
+  const [fileData, setFileData] = useState<File | null>();
   const [message, setMessage] = useState<string>("");
   const [errors, setErrors] = useState<{
     recipientsError: boolean;
@@ -68,14 +69,14 @@ const FileUploadModal: React.FC<DocumentDialogProps> = ({ open, onClose }) => {
   };
 
   const handleFileChange = (
-    file: File,
+    fileData: File,
     status: StatusValue,
     allFiles: IFileWithMeta[]
   ): { meta: { [name: string]: any } } | void => {
     if (status === "done") {
-      setFile(file);
+      setFileData(fileData);
     } else if (status === "aborted" || status === "removed") {
-      setFile(null);
+      setFileData(null);
     }
   };
 
@@ -86,26 +87,25 @@ const FileUploadModal: React.FC<DocumentDialogProps> = ({ open, onClose }) => {
       formErrors.recipientsError = true;
       setErrors(formErrors);
     }
-    if (!file) {
+    if (!fileData) {
       formErrors.fileError = true;
       setErrors(formErrors);
     }
-    if (recipients.length && file) {
+    if (recipients.length && fileData) {
       setErrors({ recipientsError: false, fileError: false });
-      const url = "localhost:3000/files/upload";
+      const url = `${API_URL}/files/upload`;
       const formData = new FormData();
-      const toCompanyId = recipients[0].split("_._");
-      formData.append("file", file);
+      const toCompanyId = recipients[0].split("_._")[0];
+      formData.append("file", fileData.file);
       formData.append("fromCompanyId", fromCompanyId.toString());
       formData.append("toCompanyId", toCompanyId.toString());
       const config = {
         headers: { "content-type": "multipart/form-data" }
       };
 
-      //   axios
-      //     .post(url, formData, config)
-      //     .then(response => console.log(response))
-      //     .catch(console.log);
+      axios.post(url, formData, config).catch(err => {
+        alert("Unable to upload file. Please refresh and try again.");
+      });
     }
   };
 

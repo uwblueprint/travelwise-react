@@ -16,6 +16,7 @@ export const GET_SENT_COMPANY_FILES_BY_COMPANY_ID = gql`
         title
         date_created
         file_size
+        key
       }
     }
   }
@@ -37,6 +38,7 @@ export const GET_RECEIVED_COMPANY_FILES_BY_COMPANY_ID = gql`
         title
         date_created
         file_size
+        key
       }
     }
   }

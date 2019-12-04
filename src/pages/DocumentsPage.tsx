@@ -17,10 +17,16 @@ import {
   Tab,
   makeStyles,
   Box,
-  Button
+  Button,
+  Icon,
+  IconButton
 } from "@material-ui/core";
 import TabPanel from "../components/TabPanel";
 import FileUploadModal from "../components/FileUploadDialog/FileUploadDialog";
+import { API_URL } from "../utils/config";
+import axios from "axios";
+
+const companyId = 1;
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -51,7 +57,7 @@ const renderCompaniesFiles = (fileType: string): JSX.Element => {
           ? GET_SENT_COMPANY_FILES_BY_COMPANY_ID
           : GET_RECEIVED_COMPANY_FILES_BY_COMPANY_ID
       }
-      variables={{ companyId: 1 }}
+      variables={{ companyId }}
     >
       {({ loading, error, data }) => {
         if (error) {
@@ -69,20 +75,55 @@ const renderCompaniesFiles = (fileType: string): JSX.Element => {
         const companyFiles = data && data.companies_files;
         return (
           companyFiles &&
-          companyFiles.map(({ file, to_company, from_company }) => (
-            <TableRow>
+          companyFiles.map(({ file, to_company, from_company }, index) => (
+            <TableRow key={index}>
               <TableCell>
                 {isSentFiles ? to_company.name : from_company}
               </TableCell>
               <TableCell>{file.title}</TableCell>
               <TableCell>{file.date_created}</TableCell>
               <TableCell>{file.file_size}</TableCell>
+              <TableCell>
+                <IconButton
+                  onClick={async () => {
+                    await handleFileDownload(file.id, companyId, file.title);
+                  }}
+                >
+                  <Icon>get_app</Icon>
+                </IconButton>
+              </TableCell>
             </TableRow>
           ))
         );
       }}
     </Query>
   );
+};
+
+const handleFileDownload = async (
+  fileId: string,
+  companyId: number,
+  name: string
+) => {
+  await axios({
+    url: `${API_URL}/files/download`,
+    method: "POST",
+    data: {
+      fileId,
+      companyId
+    },
+    responseType: "blob"
+  })
+    .then((response: any) => {
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement("a");
+      link.href = url;
+      link.setAttribute("download", name);
+      link.click();
+    })
+    .catch(error => {
+      alert("Error downloading file");
+    });
 };
 
 const DocumentsPage: React.FC = () => {
@@ -111,7 +152,7 @@ const DocumentsPage: React.FC = () => {
       <TabPanel value={0} index={index}>
         <Table>
           <TableHead
-            columnNames={["Sent to", "File name", "Date Sent", "File Size"]}
+            columnNames={["From", "File name", "Date Sent", "File Size", ""]}
           />
           <TableBody>{renderCompaniesFiles("SENT")}</TableBody>
         </Table>
@@ -119,7 +160,7 @@ const DocumentsPage: React.FC = () => {
       <TabPanel value={1} index={index}>
         <Table>
           <TableHead
-            columnNames={["From", "File name", "Date Sent", "File Size"]}
+            columnNames={["Sent to", "File name", "Date Sent", "File Size", ""]}
           />
           <TableBody>{renderCompaniesFiles("RECEIVED")}</TableBody>
         </Table>
