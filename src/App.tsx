@@ -11,6 +11,7 @@ import Navbar from "./components/Navbar";
 import LandingPage from "./pages/LandingPage";
 import CompaniesPage from "./pages/CompaniesPage";
 import DocumentsPage from "./pages/DocumentsPage";
+import ScorecardPage from "./pages/ScorecardPage";
 import ProfilePage from './pages/ProfilePage';
 
 const client = new ApolloClient({
@@ -28,8 +29,9 @@ const App: React.FC = () => {
           <Navbar />
           <Route path="/" exact component={LandingPage} />
           <Route path="/companies" exact component={CompaniesPage} />
+          <Route path="/scorecard" exact component={ScorecardPage} />
           <Route path="/documents" exact component={DocumentsPage} />
-        <Route path="/profile" exact component={ProfilePage} />
+          <Route path="/profile" exact component={ProfilePage} />
         </Router>
       </ThemeProvider>
     </ApolloProvider>
