@@ -4,6 +4,11 @@ import { gql } from "apollo-boost";
 import DonutChart from "react-d3-donut";
 import { Card, Checkbox, LinearProgress, makeStyles } from "@material-ui/core";
 
+import CheckListCard from "./ScorecardComponents/CheckListCard";
+import DonutComponent from "./ScorecardComponents/DonutComponent";
+import DonutCard from "./ScorecardComponents/DonutCard";
+import LinearProgressCard from "./ScorecardComponents/LinearProgressCard";
+/*
 const COMPANIES_QUERY = gql`
   {
     companies {
@@ -29,196 +34,7 @@ const companiesList = (
     }}
   </Query>
 );
-
-interface DonutComponentProps {
-  data: Array<{count: number, color: string}>;
-  innerRadius: number;
-  outerRadius: number;
-  title: string;
-  fontSize: number;
-  pieClass: string;
-}
-
-const DonutComponent: React.FC<DonutComponentProps> = (props) => {
-  var data = props.data
-  const classes = makeStyles(() => ({
-    innerNumberDiv: {
-      position: "absolute",
-      fontSize: props.fontSize,
-      fontWeight: "bold",
-      bottom: '50%',
-
-      // horizontal center
-      width: '100%',
-      textAlign: 'center',
-    },
-    innerTitleDiv: {
-      position: "absolute",
-      fontSize: props.fontSize * 0.75,
-      fontWeight: "bold",
-      top: '50%',
-
-      // horizontal center
-      width: '100%',
-      textAlign: 'center',
-    },
-    outerDiv: {
-      display: 'inline-block',
-      position: 'relative',
-    }
-  }))();
-
-  return(
-    <div className={classes.outerDiv}>
-      <div className={classes.innerNumberDiv}>{data[0].count + "/" + (data[0].count + data[1].count)}</div>
-      <div className={classes.innerTitleDiv}>{props.title}</div>
-      <DonutChart
-        innerRadius={props.innerRadius}
-        outerRadius={props.outerRadius}
-        transition={true}
-        svgClass="example3"
-        pieClass={props.pieClass}
-        strokeWidtn={0}
-        data={data}
-      />
-    </div>
-  )
-}
-
-interface DonutCardProps {
-  data: Array<{count: number, color: string}>;
-  innerRadius: number;
-  outerRadius: number;
-  title: string;
-  fontSize: number;
-  pieClass: string;
-  description: string;
-  //cardTitle: string;
-}
-
-const DonutCard: React.FC<DonutCardProps> = (props) => {
-  const classes = makeStyles(() => ({
-    cardStyle: {
-      border: "1.36px solid #CCCCCC",
-      maxWidth: 210,
-      minWidth: 150,
-      maxHeight: 280,
-      minHeight: 200,
-      textAlign: "center",
-      padding: 31.6,
-      width: '15vw',
-      height: '20vw',
-      display: 'flex',
-      flexDirection: 'column',
-      margin: 30
-    },
-  }))();
-
-  return(
-    <Card className={classes.cardStyle}>
-      <DonutComponent
-        data={props.data}
-        pieClass={props.pieClass} 
-        innerRadius={props.innerRadius}
-        outerRadius={props.outerRadius} 
-        fontSize={props.fontSize}
-        title={props.title} 
-      />
-      <div style={{flexGrow: 3}}/>
-      <p>{props.description}</p>
-    </Card>
-  )
-}
-
-interface LinearProgressCardProps {
-  title: string,
-  numerator: number,
-  denominator: number,
-  barColor: string
-}
-
-const LinearProgressCard: React.FC<LinearProgressCardProps> = (props) => {
-  const classes = makeStyles(() => ({
-    cardStyle: {
-      border: "1.36px solid #CCCCCC",
-      maxWidth: 210,
-      minWidth: 150,
-      maxHeight: 280,
-      minHeight: 200,
-      textAlign: "center",
-      padding: 31.6,
-      width: '15vw',
-      height: '20vw',
-      display: 'flex',
-      flexDirection: 'column',
-      margin: 30
-    },
-    barRoot: {
-      height: 5,
-      backgroundColor: "#CCCCCC",
-      borderRadius: 10
-    },
-    barBar: {
-      borderRadius: 10,
-      backgroundColor: props.barColor
-    },
-    title: {
-      padding: 0,
-      margin: 0
-    }
-  }))();
-
-  return(
-    <Card className={classes.cardStyle}>
-      <h3 className={classes.title}>{props.title}</h3>
-      <div style={{flexGrow: 2}}/>
-      <h1>{props.numerator + " / " + props.denominator}</h1>
-      <div style={{flexGrow: 3}}/>
-      <LinearProgress 
-        variant="determinate" 
-        classes={{root: classes.barRoot, bar: classes.barBar}} 
-        value={props.numerator/props.denominator*100}
-      />
-    </Card>
-  )
-}
-
-interface checkListProps {
-  data: Array<{name: string, isChecked: boolean}>;
-  title: string;
-}
-
-const CheckListCard: React.FC<checkListProps> = (props) => {
-  const classes = makeStyles(() => ({
-    title: {
-      color: "#71A850",
-      display: "flex",
-      margin: 30
-    },
-    checklistElt: {
-      display: "flex",
-      marginLeft: 30,
-      marginRight: 30,
-      marginTop: 5,
-      marginBottom: 5
-    }
-  }))();
-
-  return (
-    <div>
-      <h4 className={classes.title}>{props.title} <div style={{flexGrow: 1}}/> {"/"+props.data.length}</h4>
-      {
-        props.data.map(element =>
-        <div className={classes.checklistElt}>
-          {element.name}
-          <div style={{flexGrow: 1}}/>
-          {element.isChecked === true ? <Checkbox disabled checked /> : <Checkbox disabled />}
-        </div>)
-      }
-    </div>
-  )
-}
-
+*/
 
 const ScorecardPage: React.FC = () => {
   var dt = [{count: 3, color: "#1978BE"}, {count: 1, color: '#F3F3F3'}]
@@ -255,6 +71,7 @@ const ScorecardPage: React.FC = () => {
 
       <Card className={classes.checklist}>
         <CheckListCard data={flurble} title={"Administrative"}/>
+        <CheckListCard data={flurble} title={"Other items"}/>
       </Card>
 
 
