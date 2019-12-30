@@ -66,10 +66,11 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-function Navbar() {
+const Navbar: React.FC = () => {
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
+  const navbarPaths: Array<string> = ["/", "/companies"];
 
+  const [value, setValue] = React.useState(navbarPaths.indexOf(window.location.pathname));
   const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
     setValue(newValue);
   };
