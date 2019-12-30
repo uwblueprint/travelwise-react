@@ -66,9 +66,12 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-function Navbar() {
+const Navbar: React.FC = () => {
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
+  //const navbarLocations: Array<{name: string, path: string}> = [{name: "Landing", path: "/"}, {name: "Companies", path: "/companies"}];
+  const navbarPaths: Array<string> = ["/", "/companies"];
+
+  const [value, setValue] = React.useState(navbarPaths.indexOf(window.location.pathname));
 
   const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
     setValue(newValue);
@@ -93,6 +96,17 @@ function Navbar() {
           onChange={handleChange}
           aria-label="tabs"
         >
+          {/*
+          {navbarLocations.map(tabElt => (
+            <Tab
+              classes={{ root: classes.TabRoot }}
+              component={Link}
+              to={tabElt.path}
+              label={tabElt.name}
+            />
+          ))}
+          */}
+
           <Tab
             classes={{ root: classes.TabRoot }}
             component={Link}
